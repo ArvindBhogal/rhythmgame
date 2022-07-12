@@ -7,6 +7,7 @@ public class PauseSystem : MonoBehaviour
 {
     public GameObject[] pauseObjects;
     private GameManager instance;
+    public GameObject fadeEffect;
 
     // Start is called before the first frame update
     void Start() {
@@ -46,12 +47,20 @@ public class PauseSystem : MonoBehaviour
 	}
 
     public void Restart() {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        hidePaused();
+        StartCoroutine(DelaySecondLoad(SceneManager.GetActiveScene().name));
     }
 
     public void returnToMenu() {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("songSelect");
+        hidePaused();
+        StartCoroutine(DelaySecondLoad("songSelect"));
+    }
+
+    IEnumerator DelaySecondLoad(string sceneName) {
+        instance.song.Stop();
+        fadeEffect.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(sceneName);
+
     }
 }
