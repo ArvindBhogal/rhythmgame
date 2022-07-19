@@ -12,6 +12,7 @@ public class ProgressBar : MonoBehaviour
     public float fillSpeed;
     public bool hasStarted; 
     public float songLength;
+    public GameObject fadeEffect;
 
     private void Awake() {
         slider = gameObject.GetComponent<Slider>();
@@ -32,13 +33,19 @@ public class ProgressBar : MonoBehaviour
             }
 
             if (slider.value == 1) {
-                SceneManager.LoadScene("songSelect");
+                StartCoroutine(DelaySecondLoad("songSelect"));
             }
         }
-        
     }
 
     public void incrementProgress(float newProgress) {
         songProgress = slider.value + newProgress;
+    }
+
+    IEnumerator DelaySecondLoad(string sceneName) {
+        fadeEffect.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(sceneName);
+
     }
 }
