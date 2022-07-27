@@ -15193,6 +15193,7 @@ MonoBehaviour:
   numberOfNotesHit: 0
   numberOfNotesMissed: 0
   noteCombo: 0
+  totalNumberOfNotes: 206
   notesHitDisplay: {fileID: 706415782}
 --- !u!4 &704956911
 Transform:
@@ -47995,7 +47996,7 @@ MonoBehaviour:
   scale: 1
   offset: 0
   numberOfNotes: 0
-  additionalSongOffset: -0.15
+  additionalSongOffset: 0
 --- !u!4 &1998867828
 Transform:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class ProgressBar : MonoBehaviour
             }
 
             if (slider.value == 1) {
-                StartCoroutine(DelaySecondLoad("songSelect"));
+                StartCoroutine(DelaySecondLoad("songComplete"));
             }
         }
     }

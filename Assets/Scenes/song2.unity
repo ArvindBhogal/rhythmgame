@@ -15464,7 +15464,7 @@ MonoBehaviour:
   scale: 1
   offset: 0
   numberOfNotes: 0
-  additionalSongOffset: 0.3
+  additionalSongOffset: 0.75
 --- !u!4 &372578836
 Transform:
   m_ObjectHideFlags: 0
@@ -27211,6 +27211,7 @@ MonoBehaviour:
   numberOfNotesHit: 0
   numberOfNotesMissed: 0
   noteCombo: 0
+  totalNumberOfNotes: 145
   notesHitDisplay: {fileID: 68572122}
 --- !u!4 &1176040499
 Transform:
@@ -50139,6 +50140,7 @@ MonoBehaviour:
   fillSpeed: 0
   hasStarted: 0
   songLength: 0
+  fadeEffect: {fileID: 1970923824}
 --- !u!114 &1893515375
 MonoBehaviour:
   m_ObjectHideFlags: 0

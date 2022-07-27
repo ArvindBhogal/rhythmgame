@@ -51,13 +51,19 @@ public class PauseSystem : MonoBehaviour
         StartCoroutine(DelaySecondLoad(SceneManager.GetActiveScene().name));
     }
 
+    public void Replay() {
+        StartCoroutine(DelaySecondLoad(PlayerPrefs.GetString("songName")));
+    }
+
     public void returnToMenu() {
         hidePaused();
         StartCoroutine(DelaySecondLoad("songSelect"));
     }
 
     IEnumerator DelaySecondLoad(string sceneName) {
-        instance.song.Stop();
+        if (instance) {
+            instance.song.Stop();
+        }
         fadeEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneName);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int numberOfNotesHit;
     public int numberOfNotesMissed;
     public int noteCombo;
+    public int totalNumberOfNotes;
 
     public static GameManager instance;
     public Text notesHitDisplay;
@@ -51,6 +53,11 @@ public class GameManager : MonoBehaviour
         numberOfNotesMissed++;
         noteCombo = 0;
         notesHitDisplay.text = noteCombo.ToString();
+    }
 
+    void OnDisable() {
+        PlayerPrefs.SetInt("notesHit", numberOfNotesHit);
+        PlayerPrefs.SetInt("totalNotes", totalNumberOfNotes);
+        PlayerPrefs.SetString("songName", SceneManager.GetActiveScene().name);
     }
 }
