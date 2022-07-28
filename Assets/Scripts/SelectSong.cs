@@ -11,7 +11,7 @@ public class SelectSong : MonoBehaviour
     private SpriteRenderer currentlySelected;
     private SpriteRenderer songDiamond;
     private AudioSource menuTheme;
-    private bool songConfirm;
+    public bool songConfirm;
     private CurrentlySelectedObject instance;
 
     // Start is called before the first frame update
@@ -43,7 +43,7 @@ public class SelectSong : MonoBehaviour
         }
     }
     
-    IEnumerator DelaySecondLoad(int songNumber) {
+    public IEnumerator DelaySecondLoad(int songNumber) {
         menuTheme.Stop();
         fadeEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
