@@ -8,9 +8,9 @@ public class CurrentlySelectedObject : MonoBehaviour
     private SpriteRenderer songDiamond;
     public static CurrentlySelectedObject instance;
     private SpriteRenderer currentlySelected;
-    private SelectSong selectedSong;
+    public SelectSong selectedSong;
     public SwitchSongBracket songBracket;
-    
+    public ImageController image;
 
     // Start is called before the first frame update
     void Start() {
@@ -19,6 +19,7 @@ public class CurrentlySelectedObject : MonoBehaviour
         selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
         currentlySelected = GameObject.Find("Currently Selected").GetComponent<SpriteRenderer>();
         songBracket = this.GetComponent<SwitchSongBracket>();
+        image.OnSwitch();
     }
 
     // Update is called once per frame
@@ -34,7 +35,6 @@ public class CurrentlySelectedObject : MonoBehaviour
                 instance.currentlySelectedSong = instance.currentlySelectedSong - 1;
                 currentlySelected.transform.localPosition = new Vector3(648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
-                selectedSong.songConfirm = true;
                 return;
             }
             else {
@@ -42,8 +42,9 @@ public class CurrentlySelectedObject : MonoBehaviour
                 songDiamond = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SpriteRenderer>();
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
-                selectedSong.songConfirm = true;}
             }
+            image.OnSwitch();
+        }
 
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             if (instance.currentlySelectedSong % 5 == 0) {
@@ -56,7 +57,6 @@ public class CurrentlySelectedObject : MonoBehaviour
                 instance.currentlySelectedSong = instance.currentlySelectedSong + 1;
                 currentlySelected.transform.localPosition = new Vector3(-648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
-                selectedSong.songConfirm = true;
                 return;
             }
             else {
@@ -64,9 +64,8 @@ public class CurrentlySelectedObject : MonoBehaviour
                 songDiamond = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SpriteRenderer>();
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
-                selectedSong.songConfirm = true;
             }
-
+            image.OnSwitch();
         }
 
         if (Input.GetKeyDown(KeyCode.Return)) {

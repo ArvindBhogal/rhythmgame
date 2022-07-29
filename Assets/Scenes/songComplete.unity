@@ -5700,7 +5700,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 99f2055084158aa40b0ca50550f1123e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de6e75cddf9234b6e85a0834abfb6616, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6056,6 +6056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notesHitText: {fileID: 2017853622}
   totalNotesText: {fileID: 1989555660}
+  songImage: {fileID: 1123042864}
 --- !u!1 &1641718019
 GameObject:
   m_ObjectHideFlags: 0

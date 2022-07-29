@@ -13,6 +13,8 @@ public class SelectSong : MonoBehaviour
     private AudioSource menuTheme;
     public bool songConfirm;
     private CurrentlySelectedObject instance;
+    public Sprite songImage;
+    public ImageController image;
 
     // Start is called before the first frame update
     void Start() {
@@ -25,7 +27,9 @@ public class SelectSong : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (songNumber != instance.currentlySelectedSong) {
-            songConfirm = false;
+            songConfirm = false; 
+        } else {
+            songConfirm = true;
         }
     }
 
@@ -34,8 +38,9 @@ public class SelectSong : MonoBehaviour
             songConfirm = true;
             instance.currentlySelectedSong = songNumber;
             songDiamond = GameObject.Find("Song " + songNumber).GetComponent<SpriteRenderer>();
+            instance.selectedSong = this;
+            image.OnSwitch();
             currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
-            Debug.Log(songNumber);
         }
         else {
             Debug.Log(songNumber);
