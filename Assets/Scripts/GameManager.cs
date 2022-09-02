@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -42,22 +45,27 @@ public class GameManager : MonoBehaviour
     }
 
     public void NoteHit() {
-        Debug.Log("Hit on Time");
+        // Debug.Log("Hit on Time");
         numberOfNotesHit++;
         noteCombo++;
         notesHitDisplay.text = noteCombo.ToString();
     }
 
     public void NoteMissed() {
-        Debug.Log("Missed Note");
+        // Debug.Log("Missed Note");
         numberOfNotesMissed++;
         noteCombo = 0;
         notesHitDisplay.text = noteCombo.ToString();
     }
 
-    void OnDisable() {
+    public void OnDisable() {
+        SaveGamePrefs();
+    }
+
+    public void SaveGamePrefs() {
         PlayerPrefs.SetInt("notesHit", numberOfNotesHit);
         PlayerPrefs.SetInt("totalNotes", totalNumberOfNotes);
         PlayerPrefs.SetString("songName", SceneManager.GetActiveScene().name);
     }
+
 }

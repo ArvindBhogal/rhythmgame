@@ -21,10 +21,6 @@ public class SongCompleted : MonoBehaviour
         notesHitText.text = notesHit.ToString();
         totalNotesText.text = totalNotes.ToString();
         songImage.sprite = Resources.Load<Sprite>(imageName);
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
+        DataPersistenceManager.instance.SaveGame();
     }
 }

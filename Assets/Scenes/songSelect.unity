@@ -248,10 +248,92 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 4
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
+--- !u!1 &153287422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153287423}
+  - component: {fileID: 153287425}
+  - component: {fileID: 153287424}
+  m_Layer: 0
+  m_Name: Score Count
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &153287423
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153287422}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1548696481}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -264}
+  m_SizeDelta: {x: 400, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &153287424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153287422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0.9052942, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 226
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: HELP
+--- !u!222 &153287425
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153287422}
+  m_CullTransparentMesh: 1
 --- !u!1 &162228801
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentlySelectedSong: 0
+  songScore: {fileID: 153287424}
   selectedSong: {fileID: 0}
   songBracket: {fileID: 0}
   image: {fileID: 1795347499}
@@ -5479,10 +5562,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 11
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!212 &611059163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5660,10 +5745,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 2
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 7f0fdccc05801974a8ac458b8b280c0d, type: 3}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!1 &767299704
 GameObject:
   m_ObjectHideFlags: 0
@@ -5711,10 +5798,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 15
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &767299707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5924,6 +6013,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
+--- !u!1 &827402408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827402409}
+  - component: {fileID: 827402410}
+  m_Layer: 0
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &827402409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827402408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.530659, y: 71.4904, z: 2381.9016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &827402410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d8203018c1293429e1f22409a69400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: saveData.json
 --- !u!1 &834117926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5971,10 +6105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 14
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &834117929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6126,10 +6262,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 6
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!212 &887238586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6229,10 +6367,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 7
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1131299788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6358,10 +6498,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 13
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1194563062
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6487,10 +6629,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 10
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1288136608
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6616,10 +6760,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 8
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1317783489
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6745,10 +6891,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 5
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1317788606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6859,10 +7007,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 1
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 99f2055084158aa40b0ca50550f1123e, type: 3}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!212 &1368371609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7087,10 +7237,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 9
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1489146337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7328,6 +7480,7 @@ RectTransform:
   m_Children:
   - {fileID: 1530261459}
   - {fileID: 1795347497}
+  - {fileID: 153287423}
   - {fileID: 387305609}
   - {fileID: 1368371610}
   - {fileID: 668148282}
@@ -7417,10 +7570,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 12
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!61 &1772021583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7807,10 +7962,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songNumber: 3
+  songScore: 0
+  songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
   songImage: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 1795347499}
 --- !u!1 &2004006207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4340539383612703543, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}

@@ -1,12 +1,17 @@
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SelectSong : MonoBehaviour
+public class SelectSong : MonoBehaviour, IDataPersistence
 {
 
-    public int songNumber;
+    [SerializeField] public int songNumber;
+    public int songScore;
+    public Text songScoreText;
     public GameObject fadeEffect;
     private SpriteRenderer currentlySelected;
     private SpriteRenderer songDiamond;
@@ -41,9 +46,9 @@ public class SelectSong : MonoBehaviour
             instance.selectedSong = this;
             image.OnSwitch();
             currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
+            DataPersistenceManager.instance.LoadGame();
         }
         else {
-            Debug.Log(songNumber);
             StartCoroutine(DelaySecondLoad(songNumber));
         }
     }
@@ -55,5 +60,43 @@ public class SelectSong : MonoBehaviour
         SceneManager.LoadScene("song" + songNumber);
     }
 
-    
+    public void LoadData(GameData data){         
+
+    }
+
+
+    // note, this only works for single digit songs
+    public void SaveData(ref GameData data) {
+        // data.scoreSong1 = PlayerPrefs.GetInt("notesHit");
+        string tmpName;
+        string tmpMoreMagicShit;
+        int nameLength;
+        int tmpSong; 
+        tmpName = PlayerPrefs.GetString("songName");
+        nameLength = tmpName.Length;
+
+        if (char.IsDigit(tmpName[nameLength-1])) {
+            if (char.IsDigit(tmpName[nameLength-2])) {
+                char[] tmpSongNumberStupidShit = { tmpName[nameLength-2], tmpName[nameLength-1] };
+                tmpMoreMagicShit = new string(tmpSongNumberStupidShit);
+                tmpSong = Convert.ToInt32(tmpMoreMagicShit);
+            } else {
+                tmpSong = tmpName[nameLength-1] - '0';
+            }            
+
+            if (tmpSong == songNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")){
+                Debug.Log("That one!");
+                data.songList.Remove(songNumber);
+                data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
+            }
+        }
+
+        data.storyProgression = data.songList.Sum(x => x.Value);
+
+
+        // else {
+        //     data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
+        // }
+    }
+
 }

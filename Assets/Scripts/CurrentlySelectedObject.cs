@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CurrentlySelectedObject : MonoBehaviour
+public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence 
 {
     public int currentlySelectedSong;
+    public Text songScore;
     private SpriteRenderer songDiamond;
     public static CurrentlySelectedObject instance;
     private SpriteRenderer currentlySelected;
     public SelectSong selectedSong;
     public SwitchSongBracket songBracket;
     public ImageController image;
+    private int[] songsScoresList;
 
     // Start is called before the first frame update
     void Start() {
@@ -35,6 +38,7 @@ public class CurrentlySelectedObject : MonoBehaviour
                 instance.currentlySelectedSong = instance.currentlySelectedSong - 1;
                 currentlySelected.transform.localPosition = new Vector3(648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
+                DataPersistenceManager.instance.LoadGame();
                 return;
             }
             else {
@@ -42,6 +46,8 @@ public class CurrentlySelectedObject : MonoBehaviour
                 songDiamond = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SpriteRenderer>();
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
+                DataPersistenceManager.instance.LoadGame();
+
             }
             image.OnSwitch();
         }
@@ -57,6 +63,7 @@ public class CurrentlySelectedObject : MonoBehaviour
                 instance.currentlySelectedSong = instance.currentlySelectedSong + 1;
                 currentlySelected.transform.localPosition = new Vector3(-648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
+                DataPersistenceManager.instance.LoadGame();
                 return;
             }
             else {
@@ -64,6 +71,7 @@ public class CurrentlySelectedObject : MonoBehaviour
                 songDiamond = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SpriteRenderer>();
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
+                DataPersistenceManager.instance.LoadGame();
             }
             image.OnSwitch();
         }
@@ -71,5 +79,31 @@ public class CurrentlySelectedObject : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return)) {
             StartCoroutine(selectedSong.DelaySecondLoad(instance.currentlySelectedSong));
         }
+    }
+
+    public void LoadData(GameData data){ 
+        int tmpScore;
+        data.songList.TryGetValue(currentlySelectedSong, out tmpScore);
+        if (tmpScore >= 0) {
+            songScore.text = tmpScore.ToString();
+        }
+    }
+
+    public void SaveData(ref GameData data) {
+        // string tmpName;
+        // int nameLength;
+        // int tmpSong; 
+        // tmpName = PlayerPrefs.GetString("songName");
+        // nameLength = tmpName.Length;
+
+        // tmpSong = tmpName[nameLength-1] - '0';
+        // if (data.songList.ContainsKey(tmpSong)) {
+        //     data.songList.Remove(tmpSong);
+        // }
+        // data.songList.Add(tmpSong, PlayerPrefs.GetInt("notesHit"));
+
+        // else {
+        //     data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
+        // }
     }
 }
