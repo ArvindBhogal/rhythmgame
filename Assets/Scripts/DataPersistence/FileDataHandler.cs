@@ -32,13 +32,16 @@ public class FileDataHandler
                 Debug.LogError("Error occured when trying to load data from file: " + fullPath + "\n" + e);
             }
         }
+
         return loadedData;
     }
 
     public void Save(GameData data) {
+        Debug.Log(data);
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
         try {
+            Debug.Log(fullPath);
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             string dataToStore = JsonUtility.ToJson(data, true);
             using (FileStream stream = new FileStream(fullPath, FileMode.Create)) {

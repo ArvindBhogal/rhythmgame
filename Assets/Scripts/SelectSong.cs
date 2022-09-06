@@ -69,20 +69,20 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data) {
         // data.scoreSong1 = PlayerPrefs.GetInt("notesHit");
         string tmpName;
-        string tmpMoreMagicShit;
+        // string tmpMoreMagicShit;
         int nameLength;
         int tmpSong; 
         tmpName = PlayerPrefs.GetString("songName");
         nameLength = tmpName.Length;
 
+        // one time run for adding a song to the dictionary
+        if (!data.songList.ContainsKey(songNumber)) {
+            data.songList.Add(songNumber, 0);
+        }
+
         if (char.IsDigit(tmpName[nameLength-1])) {
-            if (char.IsDigit(tmpName[nameLength-2])) {
-                char[] tmpSongNumberStupidShit = { tmpName[nameLength-2], tmpName[nameLength-1] };
-                tmpMoreMagicShit = new string(tmpSongNumberStupidShit);
-                tmpSong = Convert.ToInt32(tmpMoreMagicShit);
-            } else {
-                tmpSong = tmpName[nameLength-1] - '0';
-            }            
+
+            tmpSong = tmpName[nameLength-1] - '0';
 
             if (tmpSong == songNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")){
                 Debug.Log("That one!");

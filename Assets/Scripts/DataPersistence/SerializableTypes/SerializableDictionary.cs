@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
+public class SerializableDictionary<TKey, TValue> : SortedDictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
 
     [SerializeField] private List<TKey> keys = new List<TKey>();
@@ -22,7 +22,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
         this.Clear();
 
         if (keys.Count != values.Count) {
-            Debug.LogError("FUck");
+            Debug.LogError("Not Good.");
         }
 
         for (int i = 0; i < keys.Count; i++) {
