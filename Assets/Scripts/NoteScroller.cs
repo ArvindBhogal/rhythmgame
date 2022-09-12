@@ -16,11 +16,14 @@ public class NoteScroller : MonoBehaviour
         numberOfNotes = 0;
         beatTempo = beatTempo / 60f;
         scale = 5f;
-        offset = -(-3 * scale) - -(-3);
+        offset = -(-3f * scale) - -(-3f);
+        additionalSongOffset = additionalSongOffset * scale;
         scaleNoteMap(offset);
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        QualitySettings.vSyncCount = 0;
+        // Debug.Log(Screen.currentResolution.refreshRate);
     }
 
-    // Update is called once per frame
     void Update() {
         if (!hasStarted) {
             // if (Input.anyKeyDown) {
@@ -28,7 +31,8 @@ public class NoteScroller : MonoBehaviour
             // }
         }
         else {
-            transform.position-= new Vector3(0f, beatTempo * Time.deltaTime * scale, 0f);
+            // transform.position-= new Vector3(0f, beatTempo * Time.deltaTime * scale, 0f);
+            transform.Translate(Vector3.down * Time.deltaTime * beatTempo * scale);
         }
     }
 
