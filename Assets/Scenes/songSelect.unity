@@ -252,7 +252,7 @@ MonoBehaviour:
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
-  songImage: {fileID: 0}
+  songImage: {fileID: 21300000, guid: 69d88b8891386cc43b042cf7652db75a, type: 3}
   image: {fileID: 1795347499}
 --- !u!1 &153287422
 GameObject:
