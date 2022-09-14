@@ -13,19 +13,23 @@ public class PauseSystem : MonoBehaviour
     void Start() {
         instance = gameObject.GetComponent<GameManager>();
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
-        hidePaused();
+        if (instance) {
+            hidePaused();
+        }
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (Time.timeScale == 1) {
-                showPaused();
-            }
-            else if (Time.timeScale == 0) {
-			    hidePaused();
-		    }   
-        } 
+        if (instance) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (Time.timeScale == 1) {
+                    showPaused();
+                }
+                else if (Time.timeScale == 0) {
+                    hidePaused();
+                }   
+            }    
+        }
     }
 
     public void showPaused(){
