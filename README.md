@@ -62,11 +62,12 @@ Song 3: Medium (6)
 Song 4: Hard (8)  
 Song 5: Medium (4)  
 
-This line is also a separate paragraph, but...
-This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
+___
+
+### Author's Notes (2022-09-15) ### 
 
 ___
 
-There's still quite a lot of things I want to do for this, but for now here's the initial version to show the concept. 
+Took me a while, but I was able to make an app and actually 'release' it. Of course, there's still a lot of stuff to change up, but this is a good place for me to start off. There's still quite a lot of things I want to do for this, but for now here's the initial version to show the concept. For now, if you do download the game, I hope you enjoy what little there is to it.  
 
 [here]: https://github.com/ArvindBhogal/rhythmgame/releases/tag/v1.0-alpha
