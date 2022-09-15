@@ -1,0 +1,4 @@
+#!/bin/bash
+
+chmod +x Alpha\ 1.0.app/Contents/MacOS/RhythmGame
++xattr -r -d com.apple.quarantine Alpha\ 1.0.app/
