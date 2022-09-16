@@ -21,8 +21,8 @@ ___
 **Mac** 
 1. Unzip "Alpha.1.0.zip"
 2. Run the following two commands on Terminal. Make sure to change directory (cd) into the newly unzipped folder "Alpha 1.0" (You can do this by opening Terminal and typing in `cd` and dragging the "Alpha 1.0" folder into the terminal to automatically retrieve the path)
-`chmod 700 unlockperms.command`
-`sed -i -e 's/\r$//' unlockperms.command`
+`chmod 700 unlockperms.command`  
+`sed -i -e 's/\r$//' unlockperms.command`  
 3. Double click on the unlockperms.command
 4. Open the application labelled "Alpha 1.0" with the custom icon
 
