@@ -10,6 +10,7 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
     private SpriteRenderer songDiamond;
     public static CurrentlySelectedObject instance;
     private SpriteRenderer currentlySelected;
+    public AudioSource songPlaying;
     public SelectSong selectedSong;
     public SwitchSongBracket songBracket;
     public ImageController image;
@@ -21,6 +22,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
         currentlySelectedSong = 1;
         selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
         currentlySelected = GameObject.Find("Currently Selected").GetComponent<SpriteRenderer>();
+        songPlaying.clip = selectedSong.clip;
+        songPlaying.Play();
         songBracket = this.GetComponent<SwitchSongBracket>();
         image.OnSwitch();
     }
@@ -39,6 +42,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                songPlaying.clip = selectedSong.clip;
+                songPlaying.Play();
                 image.OnSwitch();
                 return;
             }
@@ -48,6 +53,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                songPlaying.clip = selectedSong.clip;
+                songPlaying.Play();
                 image.OnSwitch();
             }
         }
@@ -64,6 +71,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(-648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                songPlaying.clip = selectedSong.clip;
+                songPlaying.Play();
                 image.OnSwitch();
                 return;
             }
@@ -73,6 +82,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                songPlaying.clip = selectedSong.clip;
+                songPlaying.Play();
                 image.OnSwitch();
             }
             

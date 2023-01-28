@@ -15,7 +15,8 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     public GameObject fadeEffect;
     private SpriteRenderer currentlySelected;
     private SpriteRenderer songDiamond;
-    private AudioSource menuTheme;
+    public AudioSource songPlaying;
+    [SerializeField] public AudioClip clip;
     public bool songConfirm;
     private CurrentlySelectedObject instance;
     public Sprite songImage;
@@ -23,7 +24,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
 
     // Start is called before the first frame update
     void Start() {
-        menuTheme = GameObject.FindGameObjectWithTag("Menu Theme").GetComponent<AudioSource>();
+        // menuTheme = GameObject.FindGameObjectWithTag("Menu Theme").GetComponent<AudioSource>();
         currentlySelected = GameObject.Find("Currently Selected").GetComponent<SpriteRenderer>();
         instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
         songConfirm = false;
@@ -44,6 +45,8 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             instance.currentlySelectedSong = songNumber;
             songDiamond = GameObject.Find("Song " + songNumber).GetComponent<SpriteRenderer>();
             instance.selectedSong = this;
+            songPlaying.clip = clip;
+            songPlaying.Play();
             image.OnSwitch();
             currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
             DataPersistenceManager.instance.LoadGame();
@@ -54,7 +57,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     }
     
     public IEnumerator DelaySecondLoad(int songNumber) {
-        menuTheme.Stop();
+        songPlaying.Stop();
         fadeEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("song" + songNumber);

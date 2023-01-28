@@ -14,6 +14,6 @@ public class MenuScript : MonoBehaviour
     public IEnumerator DelaySecondLoad() {
         fadeEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("songSelect");
+        SceneManager.LoadScene("hub");
     }
 }
