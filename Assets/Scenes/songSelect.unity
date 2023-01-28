@@ -6341,7 +6341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &887238583
 Transform:
   m_ObjectHideFlags: 0
@@ -6400,7 +6400,7 @@ MonoBehaviour:
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
-  songImage: {fileID: 0}
+  songImage: {fileID: 21300000, guid: 2ec4d3f86aedbb6409932c0c9acbc9ad, type: 3}
   image: {fileID: 1795347499}
 --- !u!212 &887238586
 SpriteRenderer:
@@ -6606,7 +6606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1131299786
 Transform:
   m_ObjectHideFlags: 0
@@ -6868,7 +6868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1288136606
 Transform:
   m_ObjectHideFlags: 0
@@ -7134,7 +7134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1317783487
 Transform:
   m_ObjectHideFlags: 0
@@ -7167,7 +7167,7 @@ MonoBehaviour:
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songConfirm: 0
-  songImage: {fileID: 0}
+  songImage: {fileID: 21300000, guid: 927b81763acf2a14b98deb2346488476, type: 3}
   image: {fileID: 1795347499}
 --- !u!61 &1317783489
 BoxCollider2D:
@@ -7629,7 +7629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1489146335
 Transform:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                image.OnSwitch();
                 return;
             }
             else {
@@ -47,9 +48,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
-
+                image.OnSwitch();
             }
-            image.OnSwitch();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
@@ -64,6 +64,7 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(-648, -324, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                image.OnSwitch();
                 return;
             }
             else {
@@ -72,8 +73,9 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 DataPersistenceManager.instance.LoadGame();
+                image.OnSwitch();
             }
-            image.OnSwitch();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Return)) {

@@ -7,6 +7,7 @@ public class ButtonController : MonoBehaviour
     private SpriteRenderer spriteR;
     public Sprite defaultImage;
     public Sprite pressedImage;
+    public LaneController laneController; 
 
     public KeyCode keyToPress;
     public Color tmpColor;
