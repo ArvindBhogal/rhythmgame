@@ -48,7 +48,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             songPlaying.clip = clip;
             songPlaying.Play();
             image.OnSwitch();
-            currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
+            currentlySelected.transform.position = new Vector3(songDiamond.transform.position.x, songDiamond.transform.position.y, currentlySelected.transform.position.z);
             DataPersistenceManager.instance.LoadGame();
         }
         else {
