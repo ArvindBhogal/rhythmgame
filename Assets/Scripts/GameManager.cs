@@ -28,8 +28,9 @@ public class GameManager : MonoBehaviour
 
     public string eventID;
     public float noteSpeed = 1f;
-    public float hitWindowRangeInMS = 80;
+    public float hitWindowRangeInMS = 100;
     public NoteObject noteObjectArchetype;
+    public NoteObject holdObjectArchytype;
     public float leadInTime;
     float leadInTimeLeft;
     float timeLeftToPlay;
@@ -60,6 +61,14 @@ public class GameManager : MonoBehaviour
 			return playingKoreo.GetLatestSampleTime() - (int)(song.pitch * leadInTimeLeft * SampleRate);
 		}
 	}
+
+    public float GetVerticalUnitOffsetForSampleTime(int sampleTime)
+{
+	    // Get the number of samples we traverse given the current speed in Units-Per-Second.
+	    float samplesPerUnit = SampleRate / noteSpeed;
+
+	    return (DelayedSampleTime - sampleTime) / samplesPerUnit;
+    }
 
     void InitializeLeadIn() {
 		// Initialize the lead-in-time only if one is specified.

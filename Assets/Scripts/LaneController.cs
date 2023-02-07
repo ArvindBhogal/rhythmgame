@@ -39,6 +39,8 @@ public class LaneController : MonoBehaviour
     float scalePress = 1f;
     float scaleHold = 1f;
 
+    NoteObject currentNote;
+
     #endregion
     #region Properties
 
@@ -103,7 +105,7 @@ public class LaneController : MonoBehaviour
         // Get the vertical bounds of the camera.  Offset by a bit to allow for offscreen spawning/removal.
         float cameraOffsetZ = -Camera.main.transform.position.z;
         spawnY = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, cameraOffsetZ)).y + 1f;
-        despawnY = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).y - 1f;
+        despawnY = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, cameraOffsetZ)).y - 100f;
 
 
         // Capture the default scale set in the Inspector.
@@ -141,6 +143,7 @@ public class LaneController : MonoBehaviour
         }
         else if (Input.GetKeyUp(keyboardButton))
         {
+            CheckNoteContinued();
             SetScaleDefault();
         }
     }
@@ -172,13 +175,17 @@ public class LaneController : MonoBehaviour
     public void CheckNoteHit()
     {
         // Always check only the first event as we clear out missed entries before.
-        if (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteHittable())
-        {
-
+        if (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteHittable()) {
             NoteObject hitNote = trackedNotes.Dequeue();
-
             hitNote.OnHit();
+            currentNote = hitNote;
         }
+    }
+
+    public void CheckNoteContinued() {
+        if (currentNote && currentNote.noteSpan && currentNote.currentlyPressed) {
+            currentNote.OnRelease(currentNote.IsNoteReleasable());
+        } 
     }
 
     // Checks if the next Note Object should be spawned.  If so, it will spawn the Note Object and
