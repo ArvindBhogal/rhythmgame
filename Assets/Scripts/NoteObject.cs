@@ -152,20 +152,22 @@ public class NoteObject : MonoBehaviour
     {
         bool bHittable = false;
 
-        if (trackedEvent.IsOneOff()) {
-            int noteTime = trackedEvent.StartSample;
-            int curTime = gameManager.DelayedSampleTime;
-            int hitWindow = gameManager.HitWindowSampleWidth;
+        if (trackedEvent != null) {
+            if (trackedEvent.IsOneOff()) {
+                int noteTime = trackedEvent.StartSample;
+                int curTime = gameManager.DelayedSampleTime;
+                int hitWindow = gameManager.HitWindowSampleWidth;
 
-            bHittable = Mathf.Abs(noteTime - curTime) <= hitWindow;
-        } else {
-            int startTime = trackedEvent.StartSample;
-            int curTime = gameManager.DelayedSampleTime;
-            int hitWindow = gameManager.HitWindowSampleWidth;
+                bHittable = Mathf.Abs(noteTime - curTime) <= hitWindow;
+            } else {
+                int startTime = trackedEvent.StartSample;
+                int curTime = gameManager.DelayedSampleTime;
+                int hitWindow = gameManager.HitWindowSampleWidth;
 
-            bHittable = Mathf.Abs(startTime - curTime) <= hitWindow;
-
+                bHittable = Mathf.Abs(startTime - curTime) <= hitWindow;
+            }
         }
+
 
         return bHittable;
     }
@@ -173,12 +175,14 @@ public class NoteObject : MonoBehaviour
     public bool IsNoteReleasable() {
         bool bReleasable = false;
 
-        int endTime = trackedEvent.EndSample;
-        int curTime = gameManager.DelayedSampleTime;
-        int hitWindow = gameManager.HitWindowSampleWidth;
+        if (trackedEvent != null) {
+            int endTime = trackedEvent.EndSample;
+            int curTime = gameManager.DelayedSampleTime;
+            int hitWindow = gameManager.HitWindowSampleWidth;
 
-        bReleasable = Mathf.Abs(endTime - curTime) <= hitWindow;
-
+            bReleasable = Mathf.Abs(endTime - curTime) <= hitWindow;
+        }
+        
         return bReleasable;
     }
 

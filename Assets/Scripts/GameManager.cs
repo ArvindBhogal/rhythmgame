@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public string eventID;
     public float noteSpeed = 1f;
-    public float hitWindowRangeInMS = 100;
+    public float hitWindowRangeInMS = 80;
     public NoteObject noteObjectArchetype;
     public NoteObject holdObjectArchytype;
     public float leadInTime;
