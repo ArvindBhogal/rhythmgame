@@ -120,14 +120,16 @@ public class NoteObject : MonoBehaviour
     {
         float baseUnitHeight = visuals.sprite.rect.height / visuals.sprite.pixelsPerUnit;
         float fullHeight = gameManager.GetVerticalUnitOffsetForSampleTime(trackedEvent.StartSample) - gameManager.GetVerticalUnitOffsetForSampleTime(trackedEvent.EndSample);
+        float hitWindowHeight = gameManager.WindowSizeInUnits / 2;
+        float targetUnitHeight = fullHeight + hitWindowHeight;
 
         Vector3 scale = transform.localScale;
 
         Vector2 size = visuals.size;
 
         if (noteSpan == true) {
-            size.x = 0.37f;
-            size.y = (fullHeight / baseUnitHeight) / 5.15625f;
+            size.x = 0.3f;
+            size.y = ((targetUnitHeight / baseUnitHeight) / 5.15625f);
         }
         scale.y = 1.65f;
         scale.x = 1.65f;
