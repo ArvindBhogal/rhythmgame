@@ -57,6 +57,8 @@ public class NoteObject : MonoBehaviour
             noteSpan = false;
         }
 
+        UpdateHeight();
+
         UpdatePosition();
     }
 
