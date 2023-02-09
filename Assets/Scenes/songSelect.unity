@@ -7359,7 +7359,7 @@ MonoBehaviour:
   songPlaying: {fileID: 1530261458}
   clip: {fileID: 8300000, guid: 8c22a4e6b14ca6f40b1f4be6f094e128, type: 3}
   songConfirm: 0
-  songImage: {fileID: 21300000, guid: de6e75cddf9234b6e85a0834abfb6616, type: 3}
+  songImage: {fileID: 21300000, guid: 7b818d4667a99054590363a1ed0b66fe, type: 3}
   image: {fileID: 1795347499}
 --- !u!61 &1288136608
 BoxCollider2D:
@@ -8524,9 +8524,9 @@ MonoBehaviour:
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
-  clip: {fileID: 8300000, guid: c0c60ecac64bf4444a05ffbd00c59ab5, type: 3}
+  clip: {fileID: 8300000, guid: 16159cfe774260e48be99c5a72cee4e1, type: 3}
   songConfirm: 0
-  songImage: {fileID: 21300000, guid: de6e75cddf9234b6e85a0834abfb6616, type: 3}
+  songImage: {fileID: 21300000, guid: c8d21bef9b45d3e4fb26ff15ed3c7725, type: 3}
   image: {fileID: 1795347499}
 --- !u!61 &1489146337
 BoxCollider2D:
