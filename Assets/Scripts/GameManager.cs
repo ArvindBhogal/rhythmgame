@@ -197,6 +197,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void SaveGamePrefs() {
+        totalNumberOfNotes = numberOfNotesHit + numberOfNotesMissed;
         PlayerPrefs.SetInt("notesHit", numberOfNotesHit);
         PlayerPrefs.SetInt("totalNotes", totalNumberOfNotes);
         PlayerPrefs.SetString("songName", SceneManager.GetActiveScene().name);

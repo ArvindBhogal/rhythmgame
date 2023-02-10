@@ -85,7 +85,18 @@ public class SelectSong : MonoBehaviour, IDataPersistence
 
         if (char.IsDigit(tmpName[nameLength-1])) {
 
-            tmpSong = tmpName[nameLength-1] - '0';
+            Debug.Log(tmpName[nameLength-2]);
+            Debug.Log(tmpName[nameLength-1]);
+
+            if (nameLength == 6) {
+                char[] chars = {tmpName[nameLength-2], tmpName[nameLength-1]};
+                string tmpString = new String(chars);
+                tmpSong = Int32.Parse(tmpString);
+                Debug.Log(tmpSong);
+            } else {
+                tmpSong = tmpName[nameLength-1] - '0';
+            }
+
 
             if (tmpSong == songNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")){
                 Debug.Log("That one!");
