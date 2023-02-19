@@ -11,6 +11,12 @@ public class QuitManager : MonoBehaviour
     public AudioSource bgm;
     public GameObject fadeEffect;
 
+    public ParticleSystem particles;
+
+    public SpriteRenderer background; 
+
+    private Coroutine fade;
+
     void Start() {
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
         hideQuit();
@@ -50,6 +56,65 @@ public class QuitManager : MonoBehaviour
         StartCoroutine(DelaySecondLoad("hub"));
     }
 
+    public void switchToEasy() {
+        var main = particles.main;
+        main.startColor = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+        PlayerPrefs.SetString("difficulty", "easy");
+        startFadeInEasy();
+    }
+
+    public void switchToNormal() {
+        var main = particles.main;
+        main.startColor = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+        PlayerPrefs.SetString("difficulty", "normal");
+        startFadeInNormal();
+    }
+
+    public void startFadeInEasy() {
+        if (fade != null) {
+            return;
+        }
+        fade = StartCoroutine(FadeEasy());
+    }
+
+    public void startFadeInNormal() {
+        if (fade != null) {
+            return;
+        }
+        fade = StartCoroutine(FadeNormal());
+    }
+
+    IEnumerator FadeEasy() {
+        float target = 0.5f;
+        Color curColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        while(curColor.r > target+0.01f && curColor.b > target+0.01f) {
+            curColor.r = Mathf.Lerp(curColor.r, target, 10f * Time.deltaTime);
+            curColor.b = Mathf.Lerp(curColor.b, target, 10f * Time.deltaTime);
+            yield return new WaitForSeconds(0.0025f);
+            background.color = curColor;
+        }
+        curColor.r = 0.5f;
+        curColor.b = 0.5f;
+        background.color = curColor;
+        Debug.Log("Done");  
+        fade = null;
+    }
+
+    IEnumerator FadeNormal() {
+        float target = 1.0f;
+        Color curColor = background.color;
+        while(curColor.r < target-0.01f && curColor.b < target-0.01f) {
+            curColor.r = Mathf.Lerp(curColor.r, target, 10f * Time.deltaTime);
+            curColor.b = Mathf.Lerp(curColor.b, target, 10f * Time.deltaTime);
+            yield return new WaitForSeconds(0.0025f);
+            background.color = curColor;
+        }
+        curColor.r = 1f;
+        curColor.b = 1f;
+        background.color = curColor;
+        Debug.Log("Done");  
+        fade = null;
+    }
     
     IEnumerator DelaySecondLoad(string sceneName) {
         if (bgm) {
