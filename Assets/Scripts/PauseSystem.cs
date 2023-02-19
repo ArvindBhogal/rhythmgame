@@ -1,13 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SonicBloom.Koreo;
 
 public class PauseSystem : MonoBehaviour
 {
     public GameObject[] pauseObjects;
     private GameManager instance;
     public GameObject fadeEffect;
+    public float globalOffset; 
+    public Text globalOffsetDisplay; 
+
+    public float originalTime;
 
     // Start is called before the first frame update
     void Start() {
@@ -33,17 +40,23 @@ public class PauseSystem : MonoBehaviour
     }
 
     public void showPaused(){
+        globalOffset = PlayerPrefs.GetFloat("GlobalOffset", 0);
+        Debug.Log(globalOffset + " globalOffset");
+        originalTime = Koreographer.Instance.EventDelayInSeconds - globalOffset;
+        Debug.Log(originalTime + " originalTime");
+        globalOffsetDisplay.text = globalOffset.ToString();
+        Debug.Log("Paused");
+
 		foreach(GameObject g in pauseObjects){
             Time.timeScale = 0;
-            Debug.Log("Paused");
 			g.SetActive(true);
             instance.song.Pause();
 		}
 	}
 
     public void hidePaused(){
+        Debug.Log ("Resumed");
 		foreach(GameObject g in pauseObjects){
-            Debug.Log ("Resumed");
 			Time.timeScale = 1;
 			g.SetActive(false);
             instance.song.UnPause();
@@ -63,6 +76,35 @@ public class PauseSystem : MonoBehaviour
         hidePaused();
         StartCoroutine(DelaySecondLoad("songSelect"));
     }
+
+    public void increaseGlobalOffset() {
+        globalOffset = globalOffset + 0.01f;
+        globalOffset = (float)Math.Round(globalOffset, 2);
+        PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
+        globalOffsetDisplay.text = globalOffset.ToString();
+
+        Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffset;
+        Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+    }
+
+    public void decreaseGlobalOffset() {
+        globalOffset = globalOffset - 0.01f;
+        if (globalOffset < 0f) {
+            globalOffset = 0f;
+        }
+        globalOffset = (float)Math.Round(globalOffset, 2);
+        PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
+        globalOffsetDisplay.text = globalOffset.ToString();
+
+        Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffset;
+        Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+
+
+
+
+    }
+
+
 
     IEnumerator DelaySecondLoad(string sceneName) {
         if (instance) {

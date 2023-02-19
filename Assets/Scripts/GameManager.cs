@@ -92,9 +92,7 @@ public class GameManager : MonoBehaviour
         numberOfNotesHit = 0;
         numberOfNotesMissed = 0;
         noteCombo = 0;
-
-        Koreographer.Instance.EventDelayInSeconds = delayTime;
-
+        Koreographer.Instance.EventDelayInSeconds = delayTime + PlayerPrefs.GetFloat("GlobalOffset", 0);
 
         for (int i = 0; i < noteLanes.Count; ++i){
 			noteLanes[i].Initialize(this);
@@ -144,7 +142,6 @@ public class GameManager : MonoBehaviour
     }
 
     void UpdateInternalValues() {
-        Debug.Log(hitWindowRangeInSamples);
 		hitWindowRangeInSamples = (int)(0.001f * hitWindowRangeInMS * SampleRate);
 	}
 
