@@ -10,6 +10,8 @@ public class SelectSong : MonoBehaviour, IDataPersistence
 {
 
     [SerializeField] public int songNumber;
+
+    private int modifiedSongNumber;
     public int songScore;
     public Text songScoreText;
     public GameObject fadeEffect;
@@ -68,19 +70,26 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     }
 
 
-    // note, this only works for single digit songs
     public void SaveData(ref GameData data) {
         // data.scoreSong1 = PlayerPrefs.GetInt("notesHit");
         string tmpName;
         // string tmpMoreMagicShit;
+        string difficulty = PlayerPrefs.GetString("difficulty");
         int nameLength;
         int tmpSong; 
         tmpName = PlayerPrefs.GetString("songName");
         nameLength = tmpName.Length;
+        Debug.Log("Running Save");
+
+        if (difficulty == "easy") {
+            modifiedSongNumber = songNumber + 1000;
+        }  else if (difficulty == "normal") {
+            modifiedSongNumber = songNumber;
+        }
 
         // one time run for adding a song to the dictionary
-        if (!data.songList.ContainsKey(songNumber)) {
-            data.songList.Add(songNumber, 0);
+        if (!data.songList.ContainsKey(modifiedSongNumber)) {
+            data.songList.Add(modifiedSongNumber, 0);
         }
 
         if (char.IsDigit(tmpName[nameLength-1])) {
@@ -92,16 +101,22 @@ public class SelectSong : MonoBehaviour, IDataPersistence
                 char[] chars = {tmpName[nameLength-2], tmpName[nameLength-1]};
                 string tmpString = new String(chars);
                 tmpSong = Int32.Parse(tmpString);
-                Debug.Log(tmpSong);
             } else {
                 tmpSong = tmpName[nameLength-1] - '0';
             }
 
+            if (difficulty == "easy") {
+                tmpSong = tmpSong + 1000;
+            } else if (difficulty == "normal") {
+                // tmpSong = songNumber;
+            }
 
-            if (tmpSong == songNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")){
+
+            if (tmpSong == modifiedSongNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")) {
                 Debug.Log("That one!");
-                data.songList.Remove(songNumber);
-                data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
+                data.songList.Remove(modifiedSongNumber);
+                data.songList.Add(modifiedSongNumber, PlayerPrefs.GetInt("notesHit"));
+                PlayerPrefs.SetInt("notesHit", 0);
             }
         }
 

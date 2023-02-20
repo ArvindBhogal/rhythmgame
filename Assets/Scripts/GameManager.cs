@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public int noteCombo;
     public int totalNumberOfNotes;
 
+    public string difficulty;
+
     public static GameManager instance;
     public Text notesHitDisplay;
 
@@ -88,6 +90,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         instance = this;
+        difficulty = PlayerPrefs.GetString("difficulty");
+        eventID = changeDifficulty();
         notesHitDisplay.text = " ";
         numberOfNotesHit = 0;
         numberOfNotesMissed = 0;
@@ -145,6 +149,20 @@ public class GameManager : MonoBehaviour
 		hitWindowRangeInSamples = (int)(0.001f * hitWindowRangeInMS * SampleRate);
 	}
 
+    public string changeDifficulty() {
+        string trackName = this.eventID;
+ 
+        if (difficulty == "normal") {
+            return trackName;
+
+        } else if (difficulty == "easy") {
+            trackName = trackName + "Easy";
+            return trackName;
+        } else {
+            return null;
+        }
+    }
+
     public NoteObject GetFreshNoteObject()
     {
         NoteObject retObj;
@@ -194,10 +212,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void SaveGamePrefs() {
+        string tmpString = SceneManager.GetActiveScene().name;
         totalNumberOfNotes = numberOfNotesHit + numberOfNotesMissed;
         PlayerPrefs.SetInt("notesHit", numberOfNotesHit);
         PlayerPrefs.SetInt("totalNotes", totalNumberOfNotes);
-        PlayerPrefs.SetString("songName", SceneManager.GetActiveScene().name);
+        
+        if (difficulty == "normal") {
+            PlayerPrefs.SetString("songName", tmpString);
+        } else if (difficulty == "easy") {
+            PlayerPrefs.SetString("songName", tmpString);
+        }
+
     }
 
 }

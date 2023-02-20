@@ -7,6 +7,7 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
 {
     public int currentlySelectedSong;
     public Text songScore;
+    public string difficulty;
     private SpriteRenderer songDiamond;
     public static CurrentlySelectedObject instance;
     private SpriteRenderer currentlySelected;
@@ -30,6 +31,7 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
         songPlaying.Play();
         songBracket = this.GetComponent<SwitchSongBracket>();
         image.OnSwitch();
+        difficulty = "normal";
     }
 
     // Update is called once per frame
@@ -110,7 +112,18 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data){ 
         int tmpScore;
-        data.songList.TryGetValue(currentlySelectedSong, out tmpScore);
+        int tmpSong;
+
+        if (difficulty == "easy") {
+            tmpSong = currentlySelectedSong + 1000;
+        } else {
+            tmpSong = currentlySelectedSong;
+        }
+
+        Debug.Log(tmpSong);
+
+        data.songList.TryGetValue(tmpSong, out tmpScore);
+        
         if (tmpScore >= 0) {
             songScore.text = tmpScore.ToString();
         }

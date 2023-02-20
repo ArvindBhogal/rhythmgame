@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class QuitManager : MonoBehaviour
@@ -10,16 +11,20 @@ public class QuitManager : MonoBehaviour
     public GameObject[] pauseObjects;
     public AudioSource bgm;
     public GameObject fadeEffect;
+    private CurrentlySelectedObject instance;
 
     public ParticleSystem particles;
 
     public SpriteRenderer background; 
+    public Text songScore;
 
     private Coroutine fade;
 
     void Start() {
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
         hideQuit();
+        PlayerPrefs.SetString("difficulty", "normal");
+        instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
     }
 
     void Update() {
@@ -60,6 +65,8 @@ public class QuitManager : MonoBehaviour
         var main = particles.main;
         main.startColor = new Color(0.0f, 1.0f, 0.0f, 1.0f);
         PlayerPrefs.SetString("difficulty", "easy");
+        instance.difficulty = "easy";
+        DataPersistenceManager.instance.LoadGame();
         startFadeInEasy();
     }
 
@@ -67,6 +74,8 @@ public class QuitManager : MonoBehaviour
         var main = particles.main;
         main.startColor = new Color(0.0f, 1.0f, 1.0f, 1.0f);
         PlayerPrefs.SetString("difficulty", "normal");
+        instance.difficulty = "normal";
+        DataPersistenceManager.instance.LoadGame();
         startFadeInNormal();
     }
 
