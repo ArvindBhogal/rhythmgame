@@ -17239,6 +17239,7 @@ MonoBehaviour:
   numberOfNotesMissed: 0
   noteCombo: 0
   totalNumberOfNotes: 209
+  difficulty: 
   notesHitDisplay: {fileID: 378664384}
   hitWindowRangeInSamples: 0
   noteLanes:
@@ -32612,6 +32613,10 @@ PrefabInstance:
     - target: {fileID: 4340539383612703543, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340539383612703544, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4340539383612703545, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
       propertyPath: timeEffect
