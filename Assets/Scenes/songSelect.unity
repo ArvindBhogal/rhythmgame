@@ -928,6 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentlySelectedSong: 0
   songScore: {fileID: 153287424}
+  difficulty: 
   songPlaying: {fileID: 1530261458}
   selectedSong: {fileID: 0}
   songBracket: {fileID: 0}
@@ -6820,6 +6821,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4340539383612703544, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4340539383612703545, guid: ef9bab49b1e42aa4eba41b12071319e4, type: 3}
       propertyPath: timeEffect
       value: 4
@@ -9531,6 +9536,7 @@ MonoBehaviour:
   fadeEffect: {fileID: 538215779}
   particles: {fileID: 390446585}
   background: {fileID: 162228803}
+  songScore: {fileID: 0}
 --- !u!1 &1772021580
 GameObject:
   m_ObjectHideFlags: 0
