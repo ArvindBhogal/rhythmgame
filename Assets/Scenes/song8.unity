@@ -38039,7 +38039,7 @@ MonoBehaviour:
   - {fileID: 1224955418}
   - {fileID: 782667778}
   eventID: KoreographerGameTrack
-  noteSpeed: 8
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 259991838}
   holdObjectArchytype: {fileID: 0}

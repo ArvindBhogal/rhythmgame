@@ -39,6 +39,8 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         } else {
             songConfirm = true;
         }
+
+
     }
 
     private void OnMouseDown() {
@@ -54,7 +56,11 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             DataPersistenceManager.instance.LoadGame();
         }
         else {
-            StartCoroutine(DelaySecondLoad(songNumber));
+            if (songNumber == 8 && PlayerPrefs.GetString("difficulty") == "easy") {
+                Debug.Log(songNumber);
+            } else {
+                StartCoroutine(DelaySecondLoad(songNumber));
+            }
         }
     }
     

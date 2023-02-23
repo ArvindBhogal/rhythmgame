@@ -106,13 +106,22 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
         }
 
         if (Input.GetKeyDown(KeyCode.Return)) {
-            StartCoroutine(selectedSong.DelaySecondLoad(instance.currentlySelectedSong));
+            if (currentlySelectedSong == 8 && difficulty == "easy") {
+                Debug.Log(currentlySelectedSong);
+            } else {
+                StartCoroutine(selectedSong.DelaySecondLoad(instance.currentlySelectedSong));
+            }
         }
     }
 
     public void LoadData(GameData data){ 
         int tmpScore;
         int tmpSong;
+
+        if (currentlySelectedSong == 8 && difficulty == "easy") {
+            songScore.text = "This song is only available on Normal";
+            return;
+        }
 
         if (difficulty == "easy") {
             tmpSong = currentlySelectedSong + 1000;
@@ -123,10 +132,14 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
         Debug.Log(tmpSong);
 
         data.songList.TryGetValue(tmpSong, out tmpScore);
+
+        
         
         if (tmpScore >= 0) {
             songScore.text = tmpScore.ToString();
         }
+
+
     }
 
     public void SaveData(ref GameData data) {

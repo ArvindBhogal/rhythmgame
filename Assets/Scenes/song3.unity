@@ -702,7 +702,7 @@ MonoBehaviour:
   - {fileID: 1531181189}
   - {fileID: 1298081374}
   eventID: memoriesChainedTrack
-  noteSpeed: 10
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 30187000}
   holdObjectArchytype: {fileID: 842896379}

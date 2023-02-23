@@ -23079,7 +23079,7 @@ MonoBehaviour:
   - {fileID: 1553922773}
   - {fileID: 900212931}
   eventID: aNightWithYouTrack
-  noteSpeed: 7
+  noteSpeed: 8
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 1321410443}
   holdObjectArchytype: {fileID: 658257826}

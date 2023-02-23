@@ -37490,7 +37490,7 @@ MonoBehaviour:
   - {fileID: 1496452087}
   - {fileID: 129932210}
   eventID: forNowTakeCareTrack
-  noteSpeed: 10
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 805920211}
   holdObjectArchytype: {fileID: 948364774}

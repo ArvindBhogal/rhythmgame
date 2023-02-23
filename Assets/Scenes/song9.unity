@@ -17248,7 +17248,7 @@ MonoBehaviour:
   - {fileID: 1415934689}
   - {fileID: 376853515}
   eventID: whenThingsWereAlrightTrack
-  noteSpeed: 10
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 1038315609}
   holdObjectArchytype: {fileID: 836643815}

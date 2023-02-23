@@ -34,3 +34,4 @@ MonoBehaviour:
     bStartNewMeasure: 1
   mTracks:
   - {fileID: 11400000, guid: d588e67520d3e59449ad2a5e405be709, type: 2}
+  - {fileID: 11400000, guid: b57e84b304e14b545a008aaa8068cdac, type: 2}

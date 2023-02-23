@@ -27570,7 +27570,7 @@ MonoBehaviour:
   - {fileID: 1776237233}
   - {fileID: 812077508}
   eventID: regardlessTrack
-  noteSpeed: 10
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 165751975}
   holdObjectArchytype: {fileID: 1091947124}

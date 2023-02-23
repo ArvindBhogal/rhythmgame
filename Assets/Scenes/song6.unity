@@ -16220,7 +16220,7 @@ MonoBehaviour:
   - {fileID: 1801385218}
   - {fileID: 953837124}
   eventID: ventureImagineTrack
-  noteSpeed: 10
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 41191220}
   holdObjectArchytype: {fileID: 493742666}

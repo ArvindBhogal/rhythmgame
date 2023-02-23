@@ -202,7 +202,7 @@ MonoBehaviour:
   - {fileID: 1614098317}
   - {fileID: 901828275}
   eventID: hangoutTrack
-  noteSpeed: 10
+  noteSpeed: 9
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 1425131198}
   holdObjectArchytype: {fileID: 1223797006}
