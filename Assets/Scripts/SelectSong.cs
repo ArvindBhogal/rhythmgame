@@ -30,6 +30,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         currentlySelected = GameObject.Find("Currently Selected").GetComponent<SpriteRenderer>();
         instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
         songConfirm = false;
+        Debug.Log(PlayerPrefs.GetInt("collectionNumber"));
     }
 
     // Update is called once per frame

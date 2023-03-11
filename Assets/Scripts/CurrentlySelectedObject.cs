@@ -16,15 +16,21 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
     public SwitchSongBracket songBracket;
     public ImageController image;
     private int[] songsScoresList;
-
     public ScrollRect scrollRect;
 
     public RectTransform songList;   
 
     // Start is called before the first frame update
     void Start() {
+        int tmpNumber = PlayerPrefs.GetInt("collectionNumber");
+
         instance = this;
         currentlySelectedSong = 1;
+        if (tmpNumber == 1) {
+            currentlySelectedSong = 1;
+        } else if (tmpNumber == 2) {
+            currentlySelectedSong = 11;
+        }
         selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
         currentlySelected = GameObject.Find("Currently Selected").GetComponent<SpriteRenderer>();
         songPlaying.clip = selectedSong.clip;
@@ -43,10 +49,9 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                     return;
                 }
                 Debug.Log("triggered left");
-                // songBracket.SwitchBracketLeft();
                 instance.currentlySelectedSong = instance.currentlySelectedSong - 1;
                 songDiamond = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SpriteRenderer>();
-                // currentlySelected.transform.localPosition = new Vector3(648, -324, -1);
+                // currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
                 songList.localPosition = new Vector3(songList.localPosition.x + 330, songList.localPosition.y, songList.localPosition.z);
                 currentlySelected.transform.position = new Vector3(songDiamond.transform.position.x, songDiamond.transform.position.y, currentlySelected.transform.position.z);
@@ -54,7 +59,6 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                 songPlaying.clip = selectedSong.clip;
                 songPlaying.Play();
                 image.OnSwitch();
-                return;
             }
             else {
                 instance.currentlySelectedSong = instance.currentlySelectedSong - 1;
@@ -77,18 +81,16 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
                     return;
                 }
                 Debug.Log("triggered right");
-                // songBracket.SwitchBracketRight();
                 instance.currentlySelectedSong = instance.currentlySelectedSong + 1;
                 songDiamond = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SpriteRenderer>();
-                // currentlySelected.transform.localPosition = new Vector3(-648, -324, -1);
-                songList.localPosition = new Vector3(songList.localPosition.x - 330, songList.localPosition.y, songList.localPosition.z);
+                // currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
                 selectedSong = GameObject.Find("Song " + instance.currentlySelectedSong).GetComponent<SelectSong>();
-                DataPersistenceManager.instance.LoadGame();
+                songList.localPosition = new Vector3(songList.localPosition.x - 330, songList.localPosition.y, songList.localPosition.z);
                 currentlySelected.transform.position = new Vector3(songDiamond.transform.position.x, songDiamond.transform.position.y, currentlySelected.transform.position.z);
+                DataPersistenceManager.instance.LoadGame();
                 songPlaying.clip = selectedSong.clip;
                 songPlaying.Play();
                 image.OnSwitch();
-                return;
             }
             else {
                 instance.currentlySelectedSong = instance.currentlySelectedSong + 1;

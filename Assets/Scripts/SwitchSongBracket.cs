@@ -7,7 +7,9 @@ public class SwitchSongBracket : MonoBehaviour
 {
 
     private GameObject[] songList;
-    private CurrentlySelectedObject currentlySelected;
+    public GameObject[] collectionList;
+    public GameObject currentlySelected;
+    public CurrentlySelectedObject currentlySelectedObj;
     public List<GameObject> songBracket;
     public List<GameObject> tmpBracket;
     public int numberOfSongs;
@@ -15,7 +17,34 @@ public class SwitchSongBracket : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
 
-        currentlySelected = gameObject.GetComponent<CurrentlySelectedObject>();
+        int tmpNumber = PlayerPrefs.GetInt("collectionNumber");
+
+        if (tmpNumber == 1) {
+            // currentlySelected.currentlySelectedSong = 1;
+            for (int i = 0; i < collectionList.Length; i++) {
+                if (i != tmpNumber - 1) {
+                    collectionList[i].SetActive(false);
+                }
+            }
+            collectionList[0].SetActive(true);
+        } else if (tmpNumber == 2) {
+            // currentlySelected.currentlySelectedSong = 11;
+            for (int i = 0; i < collectionList.Length; i++) {
+                if (i != tmpNumber - 1) {
+                    collectionList[i].SetActive(false);
+                }
+            }
+        }
+
+        currentlySelected = GameObject.FindWithTag("Activator");
+
+        currentlySelectedObj = currentlySelected.GetComponent<CurrentlySelectedObject>();
+
+        if (tmpNumber == 1) {
+            // currentlySelectedObj.currentlySelectedSong = 1;
+        } else if (tmpNumber == 2) {
+            // currentlySelectedObj.currentlySelectedSong = 11;
+        }
 
         songList = GameObject.FindGameObjectsWithTag("Song Crystal");
         numberOfSongs = songList.Length;
@@ -41,7 +70,7 @@ public class SwitchSongBracket : MonoBehaviour
         float tmpPosition = ogSongDiamond.transform.localPosition.y;
 
         songBracket.Clear();
-        for (int k = currentlySelected.currentlySelectedSong - 2; k > currentlySelected.currentlySelectedSong - 7; k--) {
+        for (int k = currentlySelectedObj.currentlySelectedSong - 2; k > currentlySelectedObj.currentlySelectedSong - 7; k--) {
             songBracket.Add(songList[k]);
         }
 
@@ -70,7 +99,7 @@ public class SwitchSongBracket : MonoBehaviour
         float tmpPosition = ogSongDiamond.transform.localPosition.y;
 
         songBracket.Clear();
-        for (int j = currentlySelected.currentlySelectedSong; j < currentlySelected.currentlySelectedSong + 5; j++) {
+        for (int j = currentlySelectedObj.currentlySelectedSong; j < currentlySelectedObj.currentlySelectedSong + 5; j++) {
             songBracket.Add(songList[j]);
         }
 

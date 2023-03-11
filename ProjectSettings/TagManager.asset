@@ -9,11 +9,13 @@ TagManager:
   - Menu Theme
   - Long Note Bridge
   - Song Crystal
+  - Play
+  - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
   - 

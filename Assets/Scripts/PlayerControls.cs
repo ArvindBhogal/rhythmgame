@@ -8,9 +8,13 @@ public class PlayerControls : MonoBehaviour
 {
     public float speed = 5.0f;
     public float jumpPower = 5.0f;
+    private bool justJumped = false;
     public GameObject player; 
     private Rigidbody2D playerRigidbody;
     public bool isMoving;
+    public bool onGround = false;
+    public BoxCollider2D floorCollider;
+    public ContactFilter2D floorFilter;
     public AudioSource footsteps;
     public AudioSource bgm;
     public bool isPlayable;
@@ -19,6 +23,7 @@ public class PlayerControls : MonoBehaviour
     private TMP_Text text;
     public GameObject fadeEffect;
     private float playerSize;
+    private int collectionNumber;
     // Update is called once per frame
 
     void Start() {
@@ -35,22 +40,38 @@ public class PlayerControls : MonoBehaviour
     void Update() {
 
         if (!fadeEffect.activeSelf) {
-            MovePlayer();
+            // MovePlayer();
             clampPlayerMovement();
         } else {
+            
             playerRigidbody.velocity = new Vector2(0, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Return)) {
             if (isPlayable) {
-                ViewSongs();
+                ViewMainSongs();
             }
         }
 
-        if (isMoving) {
+        onGround = floorCollider.IsTouching(floorFilter);
+
+        if (isMoving && onGround) {
             footsteps.UnPause();
         } else {
             footsteps.Pause();
+        }
+
+        if (!justJumped && Input.GetKeyDown(KeyCode.Space) && onGround) {
+            justJumped = true;
+        }
+
+
+    }
+
+    void FixedUpdate() {
+        MovePlayer();
+        if (justJumped) {
+            JumpPlayer();
         }
     }
 
@@ -78,7 +99,12 @@ public class PlayerControls : MonoBehaviour
         }
 
 
-        playerRigidbody.velocity = new Vector2(inputX * speed, inputY);
+        playerRigidbody.velocity = new Vector2(inputX * speed, playerRigidbody.velocity.y);
+    }
+
+    private void JumpPlayer() {
+        justJumped = false;
+        playerRigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
 
     private void clampPlayerMovement() {
@@ -95,10 +121,17 @@ public class PlayerControls : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         // text = activeText.GetComponent<TMP_Text>();
         // text.enabled = true;
+
         if (collision.gameObject.tag == "Play") {
             text = collision.gameObject.GetComponentInChildren<TMP_Text>();
             text.enabled = true;
             isPlayable = true;
+
+            if (collision.gameObject.name == "Piano") {
+                collectionNumber = 1;
+            } else if (collision.gameObject.name == "Sword") {
+                collectionNumber = 2;
+            }
         }
     }
 
@@ -107,12 +140,12 @@ public class PlayerControls : MonoBehaviour
         // text.enabled = false;
         if (collision.gameObject.tag == "Play") {
             text.enabled = false;
-            text = null;
+            // text = null;
             isPlayable = false;
         }
     }
 
-    public void ViewSongs() {
+    public void ViewMainSongs() {
         StartCoroutine(DelaySecondLoad());
     }
 
@@ -124,6 +157,10 @@ public class PlayerControls : MonoBehaviour
             footsteps.Stop();
         }
         fadeEffect.SetActive(true);
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        PlayerPrefs.SetInt("collectionNumber", collectionNumber);
+
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("songSelect");
     }
