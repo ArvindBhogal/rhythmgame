@@ -34,6 +34,7 @@ public class SwitchSongBracket : MonoBehaviour
                     collectionList[i].SetActive(false);
                 }
             }
+            collectionList[1].SetActive(true);
         }
 
         currentlySelected = GameObject.FindWithTag("Activator");
@@ -49,12 +50,10 @@ public class SwitchSongBracket : MonoBehaviour
         songList = GameObject.FindGameObjectsWithTag("Song Crystal");
         numberOfSongs = songList.Length;
         songBracket = new List<GameObject>();
-        for (int i = 0; i < 5; i++) {
+        Debug.Log(numberOfSongs);
+        for (int i = 0; i < numberOfSongs; i++) {
             songBracket.Add(songList[i]);
-        }
-        tmpBracket = new List<GameObject>();
-        for (int j = 5; j < 10; j++) {
-            tmpBracket.Add(songList[j]);
+            Debug.Log(songBracket[i].name);
         }
     }
 

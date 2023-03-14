@@ -46,6 +46,8 @@ public class DataPersistenceManager : MonoBehaviour
             NewGame();
         }
 
+        
+
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects) {
             dataPersistenceObj.LoadData(gameData);
         }

@@ -1542,7 +1542,7 @@ MonoBehaviour:
   difficulty: 
   songPlaying: {fileID: 1530261458}
   selectedSong: {fileID: 0}
-  songBracket: {fileID: 0}
+  songBracket: {fileID: 1548696484}
   image: {fileID: 1795347499}
   scrollRect: {fileID: 649543059}
   songList: {fileID: 1262458436}
@@ -1553,14 +1553,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387305608}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebf0ac313ec75434dab5e3d92a852933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collectionList: []
-  currentlySelected: {fileID: 0}
-  currentlySelectedObj: {fileID: 0}
+  currentlySelected: {fileID: 387305608}
+  currentlySelectedObj: {fileID: 387305611}
   songBracket: []
   tmpBracket: []
   numberOfSongs: 0
@@ -10173,9 +10173,10 @@ MonoBehaviour:
   pauseObjects: []
   bgm: {fileID: 1530261458}
   fadeEffect: {fileID: 538215779}
+  instance: {fileID: 0}
   particles: {fileID: 390446585}
   background: {fileID: 162228803}
-  songScore: {fileID: 0}
+  songScore: {fileID: 153287424}
 --- !u!114 &1548696484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10311,14 +10312,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660443998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebf0ac313ec75434dab5e3d92a852933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collectionList: []
-  currentlySelected: {fileID: 0}
-  currentlySelectedObj: {fileID: 0}
+  currentlySelected: {fileID: 1660443998}
+  currentlySelectedObj: {fileID: 1660444001}
   songBracket: []
   tmpBracket: []
   numberOfSongs: 0
@@ -10339,7 +10340,7 @@ MonoBehaviour:
   difficulty: 
   songPlaying: {fileID: 1530261458}
   selectedSong: {fileID: 0}
-  songBracket: {fileID: 0}
+  songBracket: {fileID: 1548696484}
   image: {fileID: 1795347499}
   scrollRect: {fileID: 1707321126}
   songList: {fileID: 2100968718}

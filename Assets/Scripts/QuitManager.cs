@@ -11,7 +11,7 @@ public class QuitManager : MonoBehaviour
     public GameObject[] pauseObjects;
     public AudioSource bgm;
     public GameObject fadeEffect;
-    private CurrentlySelectedObject instance;
+    public CurrentlySelectedObject instance;
 
     public ParticleSystem particles;
 
@@ -24,10 +24,14 @@ public class QuitManager : MonoBehaviour
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
         hideQuit();
         PlayerPrefs.SetString("difficulty", "normal");
-        instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
+        
     }
 
     void Update() {
+        if (instance == null) {
+            instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirm) {
             showQuit();
         }
