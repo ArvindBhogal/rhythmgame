@@ -19,6 +19,8 @@ public class SwitchSongBracket : MonoBehaviour
 
         int tmpNumber = PlayerPrefs.GetInt("collectionNumber");
 
+        currentlySelected = GameObject.FindWithTag("Activator");
+
         if (tmpNumber == 1) {
             // currentlySelected.currentlySelectedSong = 1;
             for (int i = 0; i < collectionList.Length; i++) {
@@ -27,6 +29,8 @@ public class SwitchSongBracket : MonoBehaviour
                 }
             }
             collectionList[0].SetActive(true);
+            currentlySelected.transform.SetParent(collectionList[0].transform);
+
         } else if (tmpNumber == 2) {
             // currentlySelected.currentlySelectedSong = 11;
             for (int i = 0; i < collectionList.Length; i++) {
@@ -35,9 +39,13 @@ public class SwitchSongBracket : MonoBehaviour
                 }
             }
             collectionList[1].SetActive(true);
+            currentlySelected.transform.SetParent(collectionList[1].transform);
         }
 
-        currentlySelected = GameObject.FindWithTag("Activator");
+        
+
+        
+
 
         currentlySelectedObj = currentlySelected.GetComponent<CurrentlySelectedObject>();
 

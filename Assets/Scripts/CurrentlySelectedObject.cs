@@ -103,6 +103,8 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
             tmpSong = currentlySelectedSong;
         }
 
+        Debug.Log("Load Run = " + currentlySelectedSong);
+
         Debug.Log(tmpSong);
 
         data.songList.TryGetValue(tmpSong, out tmpScore);
