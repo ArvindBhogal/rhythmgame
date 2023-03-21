@@ -178,6 +178,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &14694983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -523,6 +524,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 69d88b8891386cc43b042cf7652db75a, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!1 &153287422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1221,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &272338101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1387,6 +1390,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 1d032e399acd38c40b5bec454bcb04f6, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!212 &285779696
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1466,7 +1470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387305608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1392.8159, y: 190.00002, z: -0.9999294}
+  m_LocalPosition: {x: 558, y: 190.00002, z: -0.9999294}
   m_LocalScale: {x: 250, y: 250, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1538,6 +1542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentlySelectedSong: 0
+  firstSong: 0
+  lastSong: 0
   songScore: {fileID: 153287424}
   difficulty: 
   songPlaying: {fileID: 1530261458}
@@ -1590,7 +1596,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390446582}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2, y: -469, z: -2}
+  m_LocalPosition: {x: 2, y: -469, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6557,6 +6563,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &487610816
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6684,8 +6691,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2918522, y: 0}
   m_AnchorMax: {x: 0.711, y: 0}
-  m_AnchoredPosition: {x: -1102, y: 0}
-  m_SizeDelta: {x: -1581, y: 0}
+  m_AnchoredPosition: {x: -1200, y: 0}
+  m_SizeDelta: {x: -785, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &606143487
 MonoBehaviour:
@@ -6777,7 +6784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.02, y: -344}
+  m_AnchoredPosition: {x: 0, y: -344}
   m_SizeDelta: {x: 1934, y: 337.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649543059
@@ -6981,6 +6988,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 2252e85532a428c4897851c4026d70e2, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!1 &798278384
 GameObject:
   m_ObjectHideFlags: 0
@@ -7581,6 +7589,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 2ec4d3f86aedbb6409932c0c9acbc9ad, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!212 &887238586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8005,6 +8014,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 7356194b88caec146b2eb4436c22de64, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &1131299788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8238,7 +8248,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1368371610}
   - {fileID: 668148282}
   - {fileID: 1923481421}
   - {fileID: 142486296}
@@ -8248,14 +8257,15 @@ RectTransform:
   - {fileID: 1317783487}
   - {fileID: 1489146335}
   - {fileID: 1288136606}
+  - {fileID: 1368371610}
   m_Father: {fileID: 606143486}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1778, y: 50}
+  m_AnchoredPosition: {x: 1590, y: 50.000137}
   m_SizeDelta: {x: 3000, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.534494, y: 0.5}
 --- !u!1 &1288136605
 GameObject:
   m_ObjectHideFlags: 0
@@ -8311,6 +8321,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 7b818d4667a99054590363a1ed0b66fe, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &1288136608
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8706,6 +8717,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 927b81763acf2a14b98deb2346488476, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &1317783489
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8839,6 +8851,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: f581d9f4a04cadb4aa790b72ad2847b6, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &1317788606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9092,6 +9105,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 99f2055084158aa40b0ca50550f1123e, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!212 &1368371609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9248,6 +9262,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &1406405361
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9745,6 +9760,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: c8d21bef9b45d3e4fb26ff15ed3c7725, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!61 &1489146337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10866,6 +10882,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 5d3f83f2ad3cb114db5bb10a1c7fca6b, type: 3}
   image: {fileID: 1795347499}
+  songList: {fileID: 0}
 --- !u!1 &1930754423
 GameObject:
   m_ObjectHideFlags: 0
@@ -11152,6 +11169,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1778, y: 50}
+  m_AnchoredPosition: {x: 1590, y: 50}
   m_SizeDelta: {x: 3000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

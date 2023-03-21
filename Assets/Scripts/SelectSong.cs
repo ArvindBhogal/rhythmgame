@@ -24,6 +24,15 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     public Sprite songImage;
     public ImageController image;
 
+    private bool isScrolling = false;
+
+    private float elapsedTime;
+    private Vector3 endPosition;
+
+    public RectTransform songList;   
+
+    private float percentageComplete;
+
     // Start is called before the first frame update
     void Start() {
         // menuTheme = GameObject.FindGameObjectWithTag("Menu Theme").GetComponent<AudioSource>();
@@ -31,6 +40,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
         songConfirm = false;
         Debug.Log(PlayerPrefs.GetInt("collectionNumber"));
+        songList = instance.songList;
     }
 
     // Update is called once per frame
@@ -40,8 +50,6 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         } else {
             songConfirm = true;
         }
-
-
     }
 
     private void OnMouseDown() {
@@ -53,7 +61,9 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             songPlaying.clip = clip;
             songPlaying.Play();
             image.OnSwitch();
-            currentlySelected.transform.position = new Vector3(songDiamond.transform.position.x, songDiamond.transform.position.y, currentlySelected.transform.position.z);
+            // Debug.Log(songDiamond.transform.localPosition.x);
+            // Debug.Log(instance.transform.localPosition.x);
+            instance.ScrollToSong(songDiamond);
             DataPersistenceManager.instance.LoadGame();
         }
         else {
@@ -100,9 +110,6 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         }
 
         if (char.IsDigit(tmpName[nameLength-1])) {
-
-            Debug.Log(tmpName[nameLength-2]);
-            Debug.Log(tmpName[nameLength-1]);
 
             if (nameLength == 6) {
                 char[] chars = {tmpName[nameLength-2], tmpName[nameLength-1]};
