@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
         numberOfNotesHit = 0;
         numberOfNotesMissed = 0;
         noteCombo = 0;
+        noteSpeed = (float) PlayerPrefs.GetInt("NoteSpeed", 6);
         Koreographer.Instance.EventDelayInSeconds = delayTime + PlayerPrefs.GetFloat("GlobalOffset", 0);
 
         for (int i = 0; i < noteLanes.Count; ++i){

@@ -13,6 +13,8 @@ public class PauseSystem : MonoBehaviour
     public GameObject fadeEffect;
     public float globalOffset; 
     public Text globalOffsetDisplay; 
+    public int noteSpeed;
+    public Text noteSpeedDisplay;
 
     public float originalTime;
 
@@ -46,6 +48,11 @@ public class PauseSystem : MonoBehaviour
         Debug.Log(originalTime + " originalTime");
         globalOffsetDisplay.text = globalOffset.ToString();
         Debug.Log("Paused");
+
+
+        noteSpeed = PlayerPrefs.GetInt("NoteSpeed", (int)instance.noteSpeed);
+        noteSpeedDisplay.text = noteSpeed.ToString();
+
 
 		foreach(GameObject g in pauseObjects){
             Time.timeScale = 0;
@@ -98,10 +105,40 @@ public class PauseSystem : MonoBehaviour
 
         Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffset;
         Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+    }
 
+    public void increaseNoteSpeed() {
+        noteSpeed += 1;
+        if (noteSpeed < 1) {
+            noteSpeed = 1;
+            return;
+        } 
 
+        if (noteSpeed > 15) {
+            noteSpeed = 15;
+            return;
+        }
 
+        PlayerPrefs.SetInt("NoteSpeed", noteSpeed);
+        noteSpeedDisplay.text = noteSpeed.ToString();
+        instance.noteSpeed += 1f;
+    }
 
+        public void decreaseNoteSpeed() {
+        noteSpeed -= 1;
+        if (noteSpeed < 1) {
+            noteSpeed = 1;
+            return;
+        } 
+
+        if (noteSpeed > 15) {
+            noteSpeed = 15;
+            return;
+        }
+
+        PlayerPrefs.SetInt("NoteSpeed", noteSpeed);
+        noteSpeedDisplay.text = noteSpeed.ToString();
+        instance.noteSpeed -= 1f;
     }
 
 

@@ -24,7 +24,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     public Sprite songImage;
     public ImageController image;
 
-    private bool isScrolling = false;
+    private bool isScrolling;
 
     private float elapsedTime;
     private Vector3 endPosition;
