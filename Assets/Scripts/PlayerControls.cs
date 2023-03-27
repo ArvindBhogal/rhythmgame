@@ -24,6 +24,13 @@ public class PlayerControls : MonoBehaviour
     public GameObject fadeEffect;
     private float playerSize;
     private int collectionNumber;
+
+    public ParticleSystem pianoParticle1;
+    public ParticleSystem pianoParticle2;
+
+    public ParticleSystem swordParticle1;
+    public ParticleSystem swordParticle2;
+
     // Update is called once per frame
 
     void Start() {
@@ -129,9 +136,16 @@ public class PlayerControls : MonoBehaviour
 
             if (collision.gameObject.name == "Piano") {
                 collectionNumber = 1;
+                pianoParticle1.Play();
+                pianoParticle2.Play();
+
             } else if (collision.gameObject.name == "Sword") {
                 collectionNumber = 2;
+                swordParticle1.Play();
+                swordParticle2.Play();
             }
+
+
         }
     }
 
@@ -142,6 +156,15 @@ public class PlayerControls : MonoBehaviour
             text.enabled = false;
             // text = null;
             isPlayable = false;
+
+            if (collision.gameObject.name == "Piano") {
+                pianoParticle1.Stop();
+                pianoParticle2.Stop();
+
+            } else if (collision.gameObject.name == "Sword") {
+                swordParticle1.Stop();
+                swordParticle2.Stop();
+            }
         }
     }
 
