@@ -21,6 +21,7 @@ public class PlayerControls : MonoBehaviour
     private SpriteRenderer playerSprite; 
     public GameObject activeText;
     private TMP_Text text;
+    private FadeIn fade;
     public GameObject fadeEffect;
     private float playerSize;
     private int collectionNumber;
@@ -30,6 +31,10 @@ public class PlayerControls : MonoBehaviour
 
     public ParticleSystem swordParticle1;
     public ParticleSystem swordParticle2;
+    private bool fadeInActive;
+    private bool fadeOutActive;
+    private Coroutine activeFadeEffect;
+
 
     // Update is called once per frame
 
@@ -71,6 +76,12 @@ public class PlayerControls : MonoBehaviour
         if (!justJumped && Input.GetKeyDown(KeyCode.Space) && onGround) {
             justJumped = true;
         }
+
+        // if (fadeInActive) {
+        //     StartCoroutine(fade.FadeInItem());
+        // } else if (fadeOutActive && !fadeInActive) {
+        //     StartCoroutine(fade.FadeOutItem());
+        // }
 
 
     }
@@ -132,6 +143,14 @@ public class PlayerControls : MonoBehaviour
         if (collision.gameObject.tag == "Play") {
             text = collision.gameObject.GetComponentInChildren<TMP_Text>();
             text.enabled = true;
+            fade = collision.gameObject.GetComponentInChildren<FadeIn>();
+
+            if (activeFadeEffect != null) {
+                StopCoroutine(activeFadeEffect);
+                activeFadeEffect = null;
+            }
+            activeFadeEffect = StartCoroutine(fade.FadeInItem()); 
+
             isPlayable = true;
 
             if (collision.gameObject.name == "Piano") {
@@ -153,9 +172,15 @@ public class PlayerControls : MonoBehaviour
         // activeText = null;
         // text.enabled = false;
         if (collision.gameObject.tag == "Play") {
-            text.enabled = false;
             // text = null;
             isPlayable = false;
+            fade = collision.gameObject.GetComponentInChildren<FadeIn>();
+
+            if (activeFadeEffect != null) {
+                StopCoroutine(activeFadeEffect);
+                activeFadeEffect = null;
+            }
+            activeFadeEffect = StartCoroutine(fade.FadeOutItem());
 
             if (collision.gameObject.name == "Piano") {
                 pianoParticle1.Stop();
