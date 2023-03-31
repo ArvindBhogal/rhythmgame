@@ -123,16 +123,10 @@ namespace SonicBloom.Koreo.Demos
 
 		void Update()
 		{
-			if (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteHittable())
-			{
-				Debug.Log("can hit!");
-			}
-
 			// Clear out invalid entries.
 			while (trackedNotes.Count > 0 && trackedNotes.Peek().IsNoteMissed())
 			{
 				trackedNotes.Dequeue();
-				Debug.Log("No more");
 			}
 
 			// Check for new spawns.

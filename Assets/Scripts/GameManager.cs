@@ -82,13 +82,14 @@ public class GameManager : MonoBehaviour
 		else {
 			// Play immediately and handle offsetting into the song.  Negative zero is the same as
 			//  zero so this is not an issue.
+            song.Play();
 			song.time = -leadInTime;
-			song.Play();
 		}
 	}
 
     // Start is called before the first frame update
     void Start() {
+        InitializeLeadIn();
         instance = this;
         difficulty = PlayerPrefs.GetString("difficulty");
         eventID = changeDifficulty();
@@ -98,6 +99,8 @@ public class GameManager : MonoBehaviour
         noteCombo = 0;
         noteSpeed = (float) PlayerPrefs.GetInt("NoteSpeed", 6);
         Koreographer.Instance.EventDelayInSeconds = delayTime + PlayerPrefs.GetFloat("GlobalOffset", 0);
+
+
 
         for (int i = 0; i < noteLanes.Count; ++i){
 			noteLanes[i].Initialize(this);
@@ -134,14 +137,25 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (!startPlaying) {
-            if (Input.anyKeyDown) {
+        if (leadInTimeLeft > 0f) {
+            leadInTimeLeft = Mathf.Max(leadInTimeLeft - Time.deltaTime, 0f);
+        }
+
+        // Count down the time left to play, if necessary.
+        if (timeLeftToPlay > 0f) {
+            timeLeftToPlay -= Time.deltaTime;
+            Debug.Log(timeLeftToPlay);
+
+            // Check if it is time to begin playback.
+            if (timeLeftToPlay <= 0f) {
+                song.time = -timeLeftToPlay;
                 startPlaying = true;
                 // noteS.hasStarted = true;
                 progressB.hasStarted = true;
                 progressB.songLength = song.clip.length;
                 progressB.fillSpeed = 1f / progressB.songLength;
                 song.Play();
+                timeLeftToPlay = 0f;
             }
         }
     }

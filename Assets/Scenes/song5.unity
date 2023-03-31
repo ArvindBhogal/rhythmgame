@@ -10196,6 +10196,8 @@ MonoBehaviour:
   heldEffect3: {fileID: 0}
   heldEffect4: {fileID: 0}
   noteSpan: 0
+  tmpColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &176166772
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10324,6 +10326,8 @@ MonoBehaviour:
   heldEffect3: {fileID: 0}
   heldEffect4: {fileID: 0}
   noteSpan: 0
+  tmpColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &209089761
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11277,6 +11281,8 @@ MonoBehaviour:
   heldEffect3: {fileID: 0}
   heldEffect4: {fileID: 0}
   noteSpan: 0
+  tmpColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &658257827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17009,6 +17015,8 @@ MonoBehaviour:
   heldEffect3: {fileID: 0}
   heldEffect4: {fileID: 0}
   noteSpan: 0
+  tmpColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &1029543313
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -22548,6 +22556,8 @@ MonoBehaviour:
   heldEffect3: {fileID: 0}
   heldEffect4: {fileID: 0}
   noteSpan: 0
+  tmpColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1321410444
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23842,7 +23852,7 @@ MonoBehaviour:
   hitWindowRangeInMS: 80
   noteObjectArchetype: {fileID: 1321410443}
   holdObjectArchytype: {fileID: 658257826}
-  leadInTime: 0
+  leadInTime: 2
   delayTime: 0.1
 --- !u!1 &1635582823
 GameObject:
@@ -23904,6 +23914,8 @@ MonoBehaviour:
   heldEffect3: {fileID: 0}
   heldEffect4: {fileID: 0}
   noteSpan: 0
+  tmpColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &1635582826
 CircleCollider2D:
   m_ObjectHideFlags: 0

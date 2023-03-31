@@ -24,6 +24,9 @@ public class NoteObject : MonoBehaviour
     GameManager gameManager;
     public bool noteSpan;
 
+    public Color tmpColor;
+    public Color originalColor;
+
     static Vector3 Lerp(Vector3 from, Vector3 to, float t)
     {
         return new Vector3 (from.x + (to.x - from.x) * t, from.y + (to.y - from.y) * t, from.z + (to.z - from.z) * t);
@@ -57,6 +60,8 @@ public class NoteObject : MonoBehaviour
             noteSpan = false;
         }
 
+        originalColor = new Color (1, 1, 1, 1);
+
         UpdateHeight();
 
         UpdatePosition();
@@ -86,8 +91,11 @@ public class NoteObject : MonoBehaviour
 
         if (IsNoteHittable()) {
             canBePressed = true;
+            visuals.color = new Color (1,0,0,1);
+
         } else {
             canBePressed = false;
+            visuals.color = originalColor;
         }
 
         if (IsNoteReleasable()) {

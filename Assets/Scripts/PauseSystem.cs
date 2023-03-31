@@ -85,8 +85,13 @@ public class PauseSystem : MonoBehaviour
     }
 
     public void increaseGlobalOffset() {
-        globalOffset = globalOffset + 0.01f;
-        globalOffset = (float)Math.Round(globalOffset, 2);
+        globalOffset = globalOffset + 0.001f;
+
+        if (globalOffset > 0.1f) {
+            globalOffset = 0.1f;
+        }
+
+        globalOffset = (float)Math.Round(globalOffset, 3);
         PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
         globalOffsetDisplay.text = globalOffset.ToString();
 
@@ -95,11 +100,17 @@ public class PauseSystem : MonoBehaviour
     }
 
     public void decreaseGlobalOffset() {
-        globalOffset = globalOffset - 0.01f;
-        if (globalOffset < 0f) {
-            globalOffset = 0f;
+        globalOffset = globalOffset - 0.001f;
+
+        if (Koreographer.Instance.EventDelayInSeconds <= 0) {
+            globalOffset = globalOffset + 0.001f;
+            Debug.Log("Can go no further" + Koreographer.Instance.EventDelayInSeconds);
+            return;
         }
-        globalOffset = (float)Math.Round(globalOffset, 2);
+        if (globalOffset < -0.1f) {
+            globalOffset = -0.1f;
+        }
+        globalOffset = (float)Math.Round(globalOffset, 3);
         PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
         globalOffsetDisplay.text = globalOffset.ToString();
 
