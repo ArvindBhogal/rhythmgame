@@ -11,17 +11,20 @@ public class PauseSystem : MonoBehaviour
     public GameObject[] pauseObjects;
     private GameManager instance;
     public GameObject fadeEffect;
-    public float globalOffset; 
+    public float globalOffset;
     public Text globalOffsetDisplay; 
     public int noteSpeed;
     public Text noteSpeedDisplay;
 
     public float originalTime;
 
+    public Slider globalOffsetSlider;
+
     // Start is called before the first frame update
     void Start() {
         instance = gameObject.GetComponent<GameManager>();
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
+        globalOffsetSlider.onValueChanged.AddListener(delegate {setNewOffset();});
         if (instance) {
             hidePaused();
         }
@@ -53,6 +56,7 @@ public class PauseSystem : MonoBehaviour
         noteSpeed = PlayerPrefs.GetInt("NoteSpeed", (int)instance.noteSpeed);
         noteSpeedDisplay.text = noteSpeed.ToString();
 
+        globalOffsetSlider.value = globalOffset;
 
 		foreach(GameObject g in pauseObjects){
             Time.timeScale = 0;
@@ -70,6 +74,18 @@ public class PauseSystem : MonoBehaviour
 		}
 	}
 
+    public void setNewOffset() {
+        globalOffsetSlider.value = MathF.Round(globalOffsetSlider.value, 3);
+
+        Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffsetSlider.value;
+        PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
+
+        globalOffset = globalOffsetSlider.value;
+
+        Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+		globalOffsetDisplay.text = globalOffsetSlider.value.ToString();
+    }
+
     public void Restart() {
         hidePaused();
         StartCoroutine(DelaySecondLoad(SceneManager.GetActiveScene().name));
@@ -86,6 +102,7 @@ public class PauseSystem : MonoBehaviour
 
     public void increaseGlobalOffset() {
         globalOffset = globalOffset + 0.001f;
+        globalOffsetSlider.value += 0.001f;
 
         if (globalOffset > 0.1f) {
             globalOffset = 0.1f;
@@ -101,6 +118,7 @@ public class PauseSystem : MonoBehaviour
 
     public void decreaseGlobalOffset() {
         globalOffset = globalOffset - 0.001f;
+        globalOffsetSlider.value -= 0.001f;
 
         if (Koreographer.Instance.EventDelayInSeconds <= 0) {
             globalOffset = globalOffset + 0.001f;
