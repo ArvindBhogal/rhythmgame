@@ -4,12 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class PlayerControls : MonoBehaviour
+public class PlayerControls : MonoBehaviour, IDataPersistence 
 {
     public float speed = 5.0f;
     public float jumpPower = 5.0f;
     private bool justJumped = false;
     public GameObject player; 
+    public PlayerControls instance;
     private Rigidbody2D playerRigidbody;
     public bool isMoving;
     public bool onGround = false;
@@ -21,10 +22,13 @@ public class PlayerControls : MonoBehaviour
     private SpriteRenderer playerSprite; 
     public GameObject activeText;
     private TMP_Text text;
+    public TMP_Text cutsceneTextDisplay;
+    private List<string> cutsceneTextArray;
     private FadeIn fade;
     public GameObject fadeEffect;
     private float playerSize;
     private int collectionNumber;
+    public bool cutsceneActive = false;
 
     public ParticleSystem pianoParticle1;
     public ParticleSystem pianoParticle2;
@@ -34,11 +38,13 @@ public class PlayerControls : MonoBehaviour
     private bool fadeInActive;
     private bool fadeOutActive;
     private Coroutine activeFadeEffect;
-
+    public GDTFadeEffect cutsceneBlackScreen;
+    private int count = 0;
 
     // Update is called once per frame
 
     void Start() {
+        instance = this;
         footsteps.Play();
         playerSprite = GetComponent<SpriteRenderer>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -47,49 +53,65 @@ public class PlayerControls : MonoBehaviour
 
         playerSize = playerSprite.bounds.size.x;
 
+        DataPersistenceManager.instance.LoadGame();
+
     }
 
     void Update() {
+        if (!cutsceneActive) {
+            if (!fadeEffect.activeSelf) {
+                // MovePlayer();
+                clampPlayerMovement();
+            } else {
+                
+                playerRigidbody.velocity = new Vector2(0, 0);
+            }
 
-        if (!fadeEffect.activeSelf) {
-            // MovePlayer();
-            clampPlayerMovement();
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                if (isPlayable) {
+                    ViewMainSongs();
+                }
+            }
+
+            onGround = floorCollider.IsTouching(floorFilter);
+
+            if (isMoving && onGround) {
+                footsteps.UnPause();
+            } else {
+                footsteps.Pause();
+            }
+
+            if (!justJumped && Input.GetKeyDown(KeyCode.Space) && onGround) {
+                justJumped = true;
+            }
         } else {
-            
-            playerRigidbody.velocity = new Vector2(0, 0);
-        }
+            int numberOfDialogue = cutsceneTextArray.Count;
 
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            if (isPlayable) {
-                ViewMainSongs();
+            if (count < cutsceneTextArray.Count) {
+                cutsceneTextDisplay.text = cutsceneTextArray[count];
+
+                if ( (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) ) ) {
+                count++;
+                cutsceneTextDisplay.text = cutsceneTextArray[count];
+                }
+            }
+
+            else {
+                cutsceneTextDisplay.enabled = false;
+                cutsceneBlackScreen.StartEffect();
+                bgm.Play();
+                footsteps.UnPause();
+                cutsceneActive = false;
             }
         }
-
-        onGround = floorCollider.IsTouching(floorFilter);
-
-        if (isMoving && onGround) {
-            footsteps.UnPause();
-        } else {
-            footsteps.Pause();
-        }
-
-        if (!justJumped && Input.GetKeyDown(KeyCode.Space) && onGround) {
-            justJumped = true;
-        }
-
-        // if (fadeInActive) {
-        //     StartCoroutine(fade.FadeInItem());
-        // } else if (fadeOutActive && !fadeInActive) {
-        //     StartCoroutine(fade.FadeOutItem());
-        // }
-
-
     }
 
     void FixedUpdate() {
-        MovePlayer();
-        if (justJumped) {
-            JumpPlayer();
+        if (!cutsceneActive) {
+            MovePlayer();
+            if (justJumped) {
+                JumpPlayer();
+            }
         }
     }
 
@@ -115,7 +137,6 @@ public class PlayerControls : MonoBehaviour
         else {
             isMoving = false;
         }
-
 
         playerRigidbody.velocity = new Vector2(inputX * speed, playerRigidbody.velocity.y);
     }
@@ -211,6 +232,36 @@ public class PlayerControls : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("songSelect");
+    }
+
+    public void LoadData(GameData data) { 
+        int tmp = -1;
+        float tmp2 = 0f;
+        data.songList.TryGetValue(1, out tmp);
+        tmp = 0;
+
+        if (tmp2 < 0.1f && tmp == 0)  {
+            cutsceneActive = true;
+            TriggerIntroCutscene();
+        }
+
+    }
+
+    public void SaveData(ref GameData data) {
+
+    }
+
+    private void TriggerIntroCutscene() {
+        this.bgm.Stop();
+        this.footsteps.Pause();
+
+        this.cutsceneTextArray = new List<string>();
+
+        this.cutsceneTextArray.Add("...");
+        this.cutsceneTextArray.Add("... Where am I..?");
+        this.cutsceneTextArray.Add("... Are these chains..?");
+        this.cutsceneTextArray.Add("... Oh, right...");
+        this.cutsceneTextArray.Add("... I gave up.");
     }
 
 
