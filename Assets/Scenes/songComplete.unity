@@ -473,8 +473,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Replay
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8075c47536cecf64992aece4148fcd18, type: 2}
+  m_sharedMaterial: {fileID: 7909910500289396731, guid: 8075c47536cecf64992aece4148fcd18, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5775,8 +5775,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8075c47536cecf64992aece4148fcd18, type: 2}
+  m_sharedMaterial: {fileID: 7909910500289396731, guid: 8075c47536cecf64992aece4148fcd18, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6016,7 +6016,10 @@ MonoBehaviour:
   fadeEffect: {fileID: 1025109127}
   globalOffset: 0
   globalOffsetDisplay: {fileID: 0}
+  noteSpeed: 0
+  noteSpeedDisplay: {fileID: 0}
   originalTime: 0
+  globalOffsetSlider: {fileID: 0}
 --- !u!1 &1582203127
 GameObject:
   m_ObjectHideFlags: 0
@@ -6341,7 +6344,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: 38636956414cfd14a85d654a60885307, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
@@ -6426,7 +6429,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: 38636956414cfd14a85d654a60885307, type: 3}
     m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
