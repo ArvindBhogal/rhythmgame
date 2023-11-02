@@ -134,7 +134,12 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             }
         }
 
+        // Story Progression 'Formula' 
+
+        // TODO: Add weighted formulas so each song is represented not by notes hit, but by percentage to all notes hit. 
+
         data.storyProgression = data.songList.Sum(x => x.Value);
+
 
 
         // else {

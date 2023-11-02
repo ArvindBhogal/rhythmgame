@@ -255,15 +255,16 @@ public class PlayerControls : MonoBehaviour, IDataPersistence {
     }
 
     public void LoadData(GameData data) {
+        Debug.Log(data.storyProgression);
         // int tmp = -1;
         // float tmp2 = 0f;
         // data.songList.TryGetValue(1, out tmp);
         // tmp = 0;
-        //
-        // if (tmp2 < 0.1f && tmp == 0) {
-        //     cutsceneActive = true;
-        //     TriggerIntroCutscene();
-        // }
+        
+        if (data.storyProgression == 0) {
+            cutsceneActive = true;
+            TriggerIntroCutscene();
+        }
 
     }
 
