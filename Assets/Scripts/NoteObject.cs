@@ -91,11 +91,11 @@ public class NoteObject : MonoBehaviour
 
         if (IsNoteHittable()) {
             canBePressed = true;
-            visuals.color = new Color (1,0,0,1);
+            // visuals.color = new Color (1,0,0,1);
 
         } else {
             canBePressed = false;
-            visuals.color = originalColor;
+            // visuals.color = originalColor;
         }
 
         if (IsNoteReleasable()) {

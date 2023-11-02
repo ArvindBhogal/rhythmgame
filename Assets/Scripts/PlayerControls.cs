@@ -4,12 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class PlayerControls : MonoBehaviour, IDataPersistence 
-{
+public class PlayerControls : MonoBehaviour, IDataPersistence {
     public float speed = 5.0f;
     public float jumpPower = 5.0f;
     private bool justJumped = false;
-    public GameObject player; 
+    public GameObject player;
     public PlayerControls instance;
     private Rigidbody2D playerRigidbody;
     public bool isMoving;
@@ -19,7 +18,7 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
     public AudioSource footsteps;
     public AudioSource bgm;
     public bool isPlayable;
-    private SpriteRenderer playerSprite; 
+    private SpriteRenderer playerSprite;
     public GameObject activeText;
     private TMP_Text text;
     public TMP_Text cutsceneTextDisplay;
@@ -54,16 +53,16 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
         playerSize = playerSprite.bounds.size.x;
 
         DataPersistenceManager.instance.LoadGame();
-
     }
 
     void Update() {
         if (!cutsceneActive) {
             if (!fadeEffect.activeSelf) {
                 // MovePlayer();
-                clampPlayerMovement();
-            } else {
-                
+                clampPlayerMovement(); 
+            }
+            else {
+
                 playerRigidbody.velocity = new Vector2(0, 0);
             }
 
@@ -77,39 +76,54 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
 
             if (isMoving && onGround) {
                 footsteps.UnPause();
-            } else {
+            }
+            else {
                 footsteps.Pause();
             }
 
             if (!justJumped && Input.GetKeyDown(KeyCode.Space) && onGround) {
                 justJumped = true;
             }
-        } else {
-            int numberOfDialogue = cutsceneTextArray.Count;
-
-            if (count < cutsceneTextArray.Count) {
-                cutsceneTextDisplay.text = cutsceneTextArray[count];
-
-                if ( (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) ) ) {
-                count++;
-                cutsceneTextDisplay.text = cutsceneTextArray[count];
-                }
-            }
-
-            else {
-                cutsceneTextDisplay.enabled = false;
-                cutsceneBlackScreen.StartEffect();
-                bgm.Play();
-                footsteps.UnPause();
-                cutsceneActive = false;
-            }
+            // } else {
+            //     int numberOfDialogue = cutsceneTextArray.Count;
+            //
+            //     if (count < cutsceneTextArray.Count) {
+            //         cutsceneTextDisplay.text = cutsceneTextArray[count];
+            //
+            //         if ( (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) ) ) {
+            //         count++;
+            //         cutsceneTextDisplay.text = cutsceneTextArray[count];
+            //         }
+            //     }
+            //
+            //     else {
+            //         cutsceneTextDisplay.enabled = false;
+            //         cutsceneBlackScreen.StartEffect();
+            //         bgm.Play();
+            //         footsteps.UnPause();
+            //         cutsceneActive = false;
+            //     }
+            // }
         }
-    }
+        
 
-    void FixedUpdate() {
-        if (!cutsceneActive) {
+        // private void Jump() {
+        //     playerRigidbody.velocity = new Vector2(0, jumpPower);
+        // }
+
+        // private bool isGrounded() {
+        //     bool groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 0.7f);
+        //     return groundCheck.collider 
+        // }
+    }
+    
+    void FixedUpdate()
+    {
+        if (!cutsceneActive)
+        {
             MovePlayer();
-            if (justJumped) {
+            if (justJumped)
+            {
                 JumpPlayer();
             }
         }
@@ -170,7 +184,8 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
                 StopCoroutine(activeFadeEffect);
                 activeFadeEffect = null;
             }
-            activeFadeEffect = StartCoroutine(fade.FadeInItem()); 
+
+            activeFadeEffect = StartCoroutine(fade.FadeInItem());
 
             isPlayable = true;
 
@@ -179,7 +194,8 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
                 pianoParticle1.Play();
                 pianoParticle2.Play();
 
-            } else if (collision.gameObject.name == "Sword") {
+            }
+            else if (collision.gameObject.name == "Sword") {
                 collectionNumber = 2;
                 swordParticle1.Play();
                 swordParticle2.Play();
@@ -201,13 +217,15 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
                 StopCoroutine(activeFadeEffect);
                 activeFadeEffect = null;
             }
+
             activeFadeEffect = StartCoroutine(fade.FadeOutItem());
 
             if (collision.gameObject.name == "Piano") {
                 pianoParticle1.Stop();
                 pianoParticle2.Stop();
 
-            } else if (collision.gameObject.name == "Sword") {
+            }
+            else if (collision.gameObject.name == "Sword") {
                 swordParticle1.Stop();
                 swordParticle2.Stop();
             }
@@ -220,11 +238,13 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
 
     public IEnumerator DelaySecondLoad() {
         if (bgm) {
-            bgm.Stop(); 
-        } 
+            bgm.Stop();
+        }
+
         if (footsteps) {
             footsteps.Stop();
         }
+
         fadeEffect.SetActive(true);
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -234,16 +254,16 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
         SceneManager.LoadScene("songSelect");
     }
 
-    public void LoadData(GameData data) { 
-        int tmp = -1;
-        float tmp2 = 0f;
-        data.songList.TryGetValue(1, out tmp);
-        tmp = 0;
-
-        if (tmp2 < 0.1f && tmp == 0)  {
-            cutsceneActive = true;
-            TriggerIntroCutscene();
-        }
+    public void LoadData(GameData data) {
+        // int tmp = -1;
+        // float tmp2 = 0f;
+        // data.songList.TryGetValue(1, out tmp);
+        // tmp = 0;
+        //
+        // if (tmp2 < 0.1f && tmp == 0) {
+        //     cutsceneActive = true;
+        //     TriggerIntroCutscene();
+        // }
 
     }
 
@@ -263,16 +283,4 @@ public class PlayerControls : MonoBehaviour, IDataPersistence
         this.cutsceneTextArray.Add("... Oh, right...");
         this.cutsceneTextArray.Add("... I gave up.");
     }
-
-
-
-
-    // private void Jump() {
-    //     playerRigidbody.velocity = new Vector2(0, jumpPower);
-    // }
-
-    // private bool isGrounded() {
-    //     bool groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 0.7f);
-    //     return groundCheck.collider 
-    // }
 }

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 {
     public AudioSource song;
     public bool startPlaying;
-    public NoteScroller noteS;
+    // public NoteScroller noteS;
     public ProgressBar progressB;
     public int numberOfNotesHit;
     public int numberOfNotesMissed;

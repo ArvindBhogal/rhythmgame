@@ -24,7 +24,10 @@ public class PauseSystem : MonoBehaviour
     void Start() {
         instance = gameObject.GetComponent<GameManager>();
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
-        globalOffsetSlider.onValueChanged.AddListener(delegate {setNewOffset();});
+        if (globalOffsetSlider != null) {
+            globalOffsetSlider.onValueChanged.AddListener(delegate {setNewOffset();});
+        }
+        
         if (instance) {
             hidePaused();
         }

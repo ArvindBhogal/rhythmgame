@@ -18,6 +18,7 @@ public class SwitchSongBracket : MonoBehaviour
     void Start() {
 
         int tmpNumber = PlayerPrefs.GetInt("collectionNumber");
+        Debug.Log(tmpNumber);
 
         currentlySelected = GameObject.FindWithTag("Activator");
 
