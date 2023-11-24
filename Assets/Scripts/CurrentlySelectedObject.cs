@@ -101,7 +101,7 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
         }
 
         if (Input.GetKeyDown(KeyCode.Return)) {
-            if (currentlySelectedSong == 8 && difficulty == "easy") {
+            if (currentlySelectedSong == 8 && difficulty == "easy" || selectedSong.isLocked) {
                 Debug.Log(currentlySelectedSong);
             } else {
                 StartCoroutine(selectedSong.DelaySecondLoad(instance.currentlySelectedSong));
@@ -128,6 +128,11 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
 
         if (currentlySelectedSong == 8 && difficulty == "easy") {
             songScore.text = "This song is only available on Normal";
+            return;
+        } 
+
+        if (currentlySelectedSong == 8 && data.storyProgression < 500) {
+            songScore.text = "Locked";
             return;
         }
 

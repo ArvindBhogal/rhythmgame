@@ -13,6 +13,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
 
     private int modifiedSongNumber;
     public int songScore;
+    public bool isLocked; 
     public Text songScoreText;
     public GameObject fadeEffect;
     private SpriteRenderer currentlySelected;
@@ -23,6 +24,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     private CurrentlySelectedObject instance;
     public Sprite songImage;
     public ImageController image;
+    public float storyProgression; 
 
     private bool isScrolling;
 
@@ -41,6 +43,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         songConfirm = false;
         Debug.Log(PlayerPrefs.GetInt("collectionNumber"));
         songList = instance.songList;
+        DataPersistenceManager.instance.LoadGame();
     }
 
     // Update is called once per frame
@@ -67,7 +70,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             DataPersistenceManager.instance.LoadGame();
         }
         else {
-            if (songNumber == 8 && PlayerPrefs.GetString("difficulty") == "easy") {
+            if ((songNumber == 8 && PlayerPrefs.GetString("difficulty") == "easy") || isLocked) {
                 Debug.Log(songNumber);
             } else {
                 StartCoroutine(DelaySecondLoad(songNumber));
@@ -83,7 +86,12 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     }
 
     public void LoadData(GameData data){         
+        storyProgression = data.storyProgression;
 
+        if (data.storyProgression < 1500) {
+            lockMilestoneSong(8);
+        }
+        // Debug.Log("Story Progression = ", storyProgression);
     }
 
 
@@ -140,6 +148,19 @@ public class SelectSong : MonoBehaviour, IDataPersistence
         // else {
         //     data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
         // }
+    }
+
+    private void lockMilestoneSong (int songNumber) {
+        SelectSong tmpSongDetails;
+
+        this.songDiamond = GameObject.Find("Song " + songNumber).GetComponent<SpriteRenderer>();
+        this.songDiamond.color = Color.black;
+
+        tmpSongDetails = GameObject.Find("Song " + songNumber).GetComponent<SelectSong>();
+        tmpSongDetails.clip = null;
+        tmpSongDetails.songImage = null;
+        tmpSongDetails.isLocked = true;
+        
     }
 
 }

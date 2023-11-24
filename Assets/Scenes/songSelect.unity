@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 15
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -178,6 +179,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &14694983
 BoxCollider2D:
@@ -554,6 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 4
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -561,6 +564,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 69d88b8891386cc43b042cf7652db75a, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!1 &153287422
 GameObject:
@@ -1044,6 +1048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 12
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -1051,6 +1056,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &272338101
 BoxCollider2D:
@@ -1251,6 +1257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 11
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -1258,6 +1265,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 1d032e399acd38c40b5bec454bcb04f6, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!212 &285779696
 SpriteRenderer:
@@ -6443,6 +6451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 13
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -6450,6 +6459,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &487610816
 BoxCollider2D:
@@ -11732,6 +11742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 2
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -11739,6 +11750,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 2252e85532a428c4897851c4026d70e2, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!1 &798278384
 GameObject:
@@ -12261,6 +12273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 6
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -12268,6 +12281,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 2ec4d3f86aedbb6409932c0c9acbc9ad, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!212 &887238586
 SpriteRenderer:
@@ -12608,6 +12622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 7
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -12615,6 +12630,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 7356194b88caec146b2eb4436c22de64, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &1131299788
 BoxCollider2D:
@@ -12806,6 +12822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 10
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -12813,6 +12830,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 7b818d4667a99054590363a1ed0b66fe, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &1288136608
 BoxCollider2D:
@@ -13219,6 +13237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 8
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -13226,6 +13245,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 927b81763acf2a14b98deb2346488476, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &1317783489
 BoxCollider2D:
@@ -13372,6 +13392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 5
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -13379,6 +13400,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: f581d9f4a04cadb4aa790b72ad2847b6, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &1317788606
 BoxCollider2D:
@@ -13644,6 +13666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 1
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -13651,6 +13674,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 99f2055084158aa40b0ca50550f1123e, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!212 &1368371609
 SpriteRenderer:
@@ -13820,6 +13844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 14
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -13827,6 +13852,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 0}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &1406405361
 BoxCollider2D:
@@ -19163,6 +19189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 9
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -19170,6 +19197,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: c8d21bef9b45d3e4fb26ff15ed3c7725, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!61 &1489146337
 BoxCollider2D:
@@ -20157,6 +20185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songNumber: 3
   songScore: 0
+  isLocked: 0
   songScoreText: {fileID: 0}
   fadeEffect: {fileID: 538215779}
   songPlaying: {fileID: 1530261458}
@@ -20164,6 +20193,7 @@ MonoBehaviour:
   songConfirm: 0
   songImage: {fileID: 21300000, guid: 5d3f83f2ad3cb114db5bb10a1c7fca6b, type: 3}
   image: {fileID: 1795347499}
+  storyProgression: 0
   songList: {fileID: 0}
 --- !u!1 &1930754423
 GameObject:
