@@ -19,8 +19,14 @@ public class ImageController : MonoBehaviour
 
     public void OnSwitch() {
         Debug.Log(instance.selectedSong.songImage);
-        songImage.sprite = instance.selectedSong.songImage;
-        PlayerPrefs.SetString("songImage", songImage.sprite.name);
+        try {
+            songImage.sprite = instance.selectedSong.songImage;
+            PlayerPrefs.SetString("songImage", songImage.sprite.name);
+        } catch {
+            songImage.sprite = null;
+        }
+        
+        
     }
 
 }

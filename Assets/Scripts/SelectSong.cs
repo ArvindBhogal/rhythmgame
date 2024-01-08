@@ -10,23 +10,40 @@ public class SelectSong : MonoBehaviour, IDataPersistence
 {
 
     [SerializeField] public int songNumber;
+
+    private int modifiedSongNumber;
     public int songScore;
+    public bool isLocked; 
     public Text songScoreText;
     public GameObject fadeEffect;
     private SpriteRenderer currentlySelected;
     private SpriteRenderer songDiamond;
-    private AudioSource menuTheme;
+    public AudioSource songPlaying;
+    [SerializeField] public AudioClip clip;
     public bool songConfirm;
     private CurrentlySelectedObject instance;
     public Sprite songImage;
     public ImageController image;
+    public float storyProgression; 
+
+    private bool isScrolling;
+
+    private float elapsedTime;
+    private Vector3 endPosition;
+
+    public RectTransform songList;   
+
+    private float percentageComplete;
 
     // Start is called before the first frame update
     void Start() {
-        menuTheme = GameObject.FindGameObjectWithTag("Menu Theme").GetComponent<AudioSource>();
+        // menuTheme = GameObject.FindGameObjectWithTag("Menu Theme").GetComponent<AudioSource>();
         currentlySelected = GameObject.Find("Currently Selected").GetComponent<SpriteRenderer>();
         instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
         songConfirm = false;
+        Debug.Log(PlayerPrefs.GetInt("collectionNumber"));
+        songList = instance.songList;
+        DataPersistenceManager.instance.LoadGame();
     }
 
     // Update is called once per frame
@@ -44,59 +61,111 @@ public class SelectSong : MonoBehaviour, IDataPersistence
             instance.currentlySelectedSong = songNumber;
             songDiamond = GameObject.Find("Song " + songNumber).GetComponent<SpriteRenderer>();
             instance.selectedSong = this;
+            songPlaying.clip = clip;
+            songPlaying.Play();
             image.OnSwitch();
-            currentlySelected.transform.localPosition = new Vector3(songDiamond.transform.localPosition.x, songDiamond.transform.localPosition.y, -1);
+            // Debug.Log(songDiamond.transform.localPosition.x);
+            // Debug.Log(instance.transform.localPosition.x);
+            instance.ScrollToSong(songDiamond);
             DataPersistenceManager.instance.LoadGame();
         }
         else {
-            StartCoroutine(DelaySecondLoad(songNumber));
+            if ((songNumber == 8 && PlayerPrefs.GetString("difficulty") == "easy") || isLocked) {
+                Debug.Log(songNumber);
+            } else {
+                StartCoroutine(DelaySecondLoad(songNumber));
+            }
         }
     }
     
     public IEnumerator DelaySecondLoad(int songNumber) {
-        menuTheme.Stop();
+        songPlaying.Stop();
         fadeEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("song" + songNumber);
     }
 
     public void LoadData(GameData data){         
+        storyProgression = data.storyProgression;
 
+        if (data.storyProgression < 750) {
+            lockMilestoneSong(8);
+        }
+        // Debug.Log("Story Progression = ", storyProgression);
     }
 
 
-    // note, this only works for single digit songs
     public void SaveData(ref GameData data) {
         // data.scoreSong1 = PlayerPrefs.GetInt("notesHit");
         string tmpName;
         // string tmpMoreMagicShit;
+        string difficulty = PlayerPrefs.GetString("difficulty");
         int nameLength;
         int tmpSong; 
         tmpName = PlayerPrefs.GetString("songName");
         nameLength = tmpName.Length;
+        Debug.Log("Running Save");
+
+        if (difficulty == "easy") {
+            modifiedSongNumber = songNumber + 1000;
+        }  else if (difficulty == "normal") {
+            modifiedSongNumber = songNumber;
+        }
 
         // one time run for adding a song to the dictionary
-        if (!data.songList.ContainsKey(songNumber)) {
-            data.songList.Add(songNumber, 0);
+        if (!data.songList.ContainsKey(modifiedSongNumber)) {
+            data.songList.Add(modifiedSongNumber, 0);
         }
 
         if (char.IsDigit(tmpName[nameLength-1])) {
 
-            tmpSong = tmpName[nameLength-1] - '0';
+            if (nameLength == 6) {
+                char[] chars = {tmpName[nameLength-2], tmpName[nameLength-1]};
+                string tmpString = new String(chars);
+                tmpSong = Int32.Parse(tmpString);
+            } else {
+                tmpSong = tmpName[nameLength-1] - '0';
+            }
 
-            if (tmpSong == songNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")){
+            if (difficulty == "easy") {
+                tmpSong = tmpSong + 1000;
+            } else if (difficulty == "normal") {
+                // tmpSong = songNumber;
+            }
+
+
+            if (tmpSong == modifiedSongNumber && data.songList[tmpSong] < PlayerPrefs.GetInt("notesHit")) {
                 Debug.Log("That one!");
-                data.songList.Remove(songNumber);
-                data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
+                data.songList.Remove(modifiedSongNumber);
+                data.songList.Add(modifiedSongNumber, PlayerPrefs.GetInt("notesHit"));
+                PlayerPrefs.SetInt("notesHit", 0);
             }
         }
 
+        // Story Progression 'Formula' 
+
+        // TODO: Add weighted formulas so each song is represented not by notes hit, but by percentage to all notes hit. 
+
         data.storyProgression = data.songList.Sum(x => x.Value);
+
 
 
         // else {
         //     data.songList.Add(songNumber, PlayerPrefs.GetInt("notesHit"));
         // }
+    }
+
+    private void lockMilestoneSong (int songNumber) {
+        SelectSong tmpSongDetails;
+
+        this.songDiamond = GameObject.Find("Song " + songNumber).GetComponent<SpriteRenderer>();
+        this.songDiamond.color = Color.black;
+
+        tmpSongDetails = GameObject.Find("Song " + songNumber).GetComponent<SelectSong>();
+        tmpSongDetails.clip = null;
+        tmpSongDetails.songImage = null;
+        tmpSongDetails.isLocked = true;
+        
     }
 
 }

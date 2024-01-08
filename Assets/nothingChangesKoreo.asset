@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
+  m_Name: nothingChangesKoreo
+  m_EditorClassIdentifier: 
+  mSourceClip: {fileID: 8300000, guid: 0c4a2bc04196ade4381dc2302aacfd6c, type: 3}
+  mAudioFilePath: 
+  mSampleRate: 44100
+  mIgnoreLatencyOffset: 0
+  mTempoSections:
+  - sectionName: New Section
+    startSample: 0
+    samplesPerBeat: 25442.30769230769
+    beatsPerMeasure: 4
+    bStartNewMeasure: 0
+  mTracks:
+  - {fileID: 11400000, guid: 0df4bd1164015ed4f9984c7576d99345, type: 2}
+  - {fileID: 11400000, guid: 5e9a10336e113ef4abe739d2c68c9e8c, type: 2}

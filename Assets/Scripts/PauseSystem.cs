@@ -1,18 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using SonicBloom.Koreo;
 
 public class PauseSystem : MonoBehaviour
 {
     public GameObject[] pauseObjects;
     private GameManager instance;
     public GameObject fadeEffect;
+    public float globalOffset;
+    public Text globalOffsetDisplay; 
+    public int noteSpeed;
+    public Text noteSpeedDisplay;
+
+    public float originalTime;
+
+    public Slider globalOffsetSlider;
 
     // Start is called before the first frame update
     void Start() {
         instance = gameObject.GetComponent<GameManager>();
         pauseObjects = GameObject.FindGameObjectsWithTag("Show On Pause");
+        if (globalOffsetSlider != null) {
+            globalOffsetSlider.onValueChanged.AddListener(delegate {setNewOffset();});
+        }
+        
         if (instance) {
             hidePaused();
         }
@@ -33,22 +48,46 @@ public class PauseSystem : MonoBehaviour
     }
 
     public void showPaused(){
+        globalOffset = PlayerPrefs.GetFloat("GlobalOffset", 0);
+        Debug.Log(globalOffset + " globalOffset");
+        originalTime = Koreographer.Instance.EventDelayInSeconds - globalOffset;
+        Debug.Log(originalTime + " originalTime");
+        globalOffsetDisplay.text = globalOffset.ToString();
+        Debug.Log("Paused");
+
+
+        noteSpeed = PlayerPrefs.GetInt("NoteSpeed", (int)instance.noteSpeed);
+        noteSpeedDisplay.text = noteSpeed.ToString();
+
+        globalOffsetSlider.value = globalOffset;
+
 		foreach(GameObject g in pauseObjects){
             Time.timeScale = 0;
-            Debug.Log("Paused");
 			g.SetActive(true);
             instance.song.Pause();
 		}
 	}
 
     public void hidePaused(){
+        Debug.Log ("Resumed");
 		foreach(GameObject g in pauseObjects){
-            Debug.Log ("Resumed");
 			Time.timeScale = 1;
 			g.SetActive(false);
             instance.song.UnPause();
 		}
 	}
+
+    public void setNewOffset() {
+        globalOffsetSlider.value = MathF.Round(globalOffsetSlider.value, 3);
+
+        Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffsetSlider.value;
+        PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
+
+        globalOffset = globalOffsetSlider.value;
+
+        Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+		globalOffsetDisplay.text = globalOffsetSlider.value.ToString();
+    }
 
     public void Restart() {
         hidePaused();
@@ -63,6 +102,78 @@ public class PauseSystem : MonoBehaviour
         hidePaused();
         StartCoroutine(DelaySecondLoad("songSelect"));
     }
+
+    public void increaseGlobalOffset() {
+        globalOffset = globalOffset + 0.001f;
+        globalOffsetSlider.value += 0.001f;
+
+        if (globalOffset > 0.1f) {
+            globalOffset = 0.1f;
+        }
+
+        globalOffset = (float)Math.Round(globalOffset, 3);
+        PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
+        globalOffsetDisplay.text = globalOffset.ToString();
+
+        Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffset;
+        Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+    }
+
+    public void decreaseGlobalOffset() {
+        globalOffset = globalOffset - 0.001f;
+        globalOffsetSlider.value -= 0.001f;
+
+        if (Koreographer.Instance.EventDelayInSeconds <= 0) {
+            globalOffset = globalOffset + 0.001f;
+            Debug.Log("Can go no further" + Koreographer.Instance.EventDelayInSeconds);
+            return;
+        }
+        if (globalOffset < -0.1f) {
+            globalOffset = -0.1f;
+        }
+        globalOffset = (float)Math.Round(globalOffset, 3);
+        PlayerPrefs.SetFloat("GlobalOffset", globalOffset);
+        globalOffsetDisplay.text = globalOffset.ToString();
+
+        Koreographer.Instance.EventDelayInSeconds = originalTime + globalOffset;
+        Debug.Log(Koreographer.Instance.EventDelayInSeconds + "Koreo");
+    }
+
+    public void increaseNoteSpeed() {
+        noteSpeed += 1;
+        if (noteSpeed < 1) {
+            noteSpeed = 1;
+            return;
+        } 
+
+        if (noteSpeed > 15) {
+            noteSpeed = 15;
+            return;
+        }
+
+        PlayerPrefs.SetInt("NoteSpeed", noteSpeed);
+        noteSpeedDisplay.text = noteSpeed.ToString();
+        instance.noteSpeed += 1f;
+    }
+
+        public void decreaseNoteSpeed() {
+        noteSpeed -= 1;
+        if (noteSpeed < 1) {
+            noteSpeed = 1;
+            return;
+        } 
+
+        if (noteSpeed > 15) {
+            noteSpeed = 15;
+            return;
+        }
+
+        PlayerPrefs.SetInt("NoteSpeed", noteSpeed);
+        noteSpeedDisplay.text = noteSpeed.ToString();
+        instance.noteSpeed -= 1f;
+    }
+
+
 
     IEnumerator DelaySecondLoad(string sceneName) {
         if (instance) {
