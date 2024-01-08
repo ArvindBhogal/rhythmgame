@@ -88,7 +88,7 @@ public class SelectSong : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data){         
         storyProgression = data.storyProgression;
 
-        if (data.storyProgression < 1500) {
+        if (data.storyProgression < 750) {
             lockMilestoneSong(8);
         }
         // Debug.Log("Story Progression = ", storyProgression);

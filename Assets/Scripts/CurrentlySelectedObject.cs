@@ -127,11 +127,11 @@ public class CurrentlySelectedObject : MonoBehaviour, IDataPersistence
         int tmpSong;
 
         if (currentlySelectedSong == 8 && difficulty == "easy") {
-            songScore.text = "This song is only available on Normal";
+            songScore.text = "Normal Mode Only";
             return;
         } 
 
-        if (currentlySelectedSong == 8 && data.storyProgression < 500) {
+        if (currentlySelectedSong == 8 && data.storyProgression < 750) {
             songScore.text = "Locked";
             return;
         }

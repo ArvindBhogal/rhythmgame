@@ -28,9 +28,9 @@ public class QuitManager : MonoBehaviour
     }
 
     void Update() {
-        if (instance == null) {
-            instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
-        }
+        // if (instance == null) {
+        //     instance = GameObject.Find("Currently Selected").GetComponent<CurrentlySelectedObject>();
+        // }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !quitConfirm) {
             showQuit();
